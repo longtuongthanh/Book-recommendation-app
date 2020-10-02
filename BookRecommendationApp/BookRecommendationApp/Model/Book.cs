@@ -8,11 +8,12 @@ namespace BookRecommendationApp.Model
 {
     public partial class Book
     {
-        public long Score {
-            get => Database.Setting.AddToListCoefficient * AddToList
-                + Database.Setting.LikeCoefficient * Likes
-                + Database.Setting.ViewCoefficient * Views
-                + InitialScore;
+        public long GetScore()
+        {
+            return Database.Setting.AddToListCoefficient * AddToList
+                    + Database.Setting.LikeCoefficient * Likes
+                    + Database.Setting.ViewCoefficient * Views
+                    + InitialScore;
         }
         // Score measures how often the book gets seen, put in 
         // read lists, and likes. Score starts out equal to the

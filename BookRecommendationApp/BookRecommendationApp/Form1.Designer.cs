@@ -78,6 +78,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(225, 26);
             this.textBox1.TabIndex = 3;
+            this.textBox1.Text = "test2@gmail.com";
             // 
             // textBox2
             // 
@@ -88,6 +89,7 @@
             this.textBox2.PasswordChar = '●';
             this.textBox2.Size = new System.Drawing.Size(225, 26);
             this.textBox2.TabIndex = 4;
+            this.textBox2.Text = "aaaaaaaa";
             // 
             // button1
             // 

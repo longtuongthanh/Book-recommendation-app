@@ -35,6 +35,7 @@ namespace BookRecommendationApp.Model
         private const string SignUpPromptTitle = "Đăng kí?";
         private const string SignInFailedPrompt
             = "Không thể đăng nhập. Xin thử lại sau ít phút.";
+        private const int TimeOut = 10000;
         #endregion
 
         #region FirebaseSetting
@@ -96,47 +97,87 @@ namespace BookRecommendationApp.Model
         }
 
         #region Tasks
-        private static async Task<bool> LoadBook()
+        private static bool LoadBook()
         {
             var task = client.Child("Books").OnceAsync<Book>();
-            var taskResult = await task;
-            s_books = taskResult.Select(item => item.Object).ToList();
-            return task.IsFaulted;
+            var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
+            taskEnd.Wait();
+            if (taskEnd.Result == task)
+            {
+                try { task.Wait(); } catch { return false; }
+                var taskResult = task.Result;
+                s_books = taskResult.Select(item => item.Object).ToList();
+                return task.IsFaulted;
+            }
+            else return false;
         }
-        private static async Task<bool> LoadTags()
+        private static bool LoadTags()
         {
-            var task = client.Child("Tags").OnceAsync<string>();
-            var taskResult = await task;
-            s_tags = taskResult.Select(item => item.Object).ToList();
-            return task.IsFaulted;
+            var task = client.Child("Tags").OnceSingleAsync<List<string>>();
+            var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
+            taskEnd.Wait();
+            if (taskEnd.Result == task)
+            {
+                try { task.Wait(); } catch { return false; }
+                s_tags = task.Result;
+                return task.IsFaulted || (!task.IsCompleted);
+            }
+            else return false;
         }
-        private static async Task<bool> LoadUser()
+        private static bool LoadUser()
         {
-            var task = client.Child("Users").Child(token.FirebaseToken).OnceSingleAsync<User>();
-            var taskResult = await task;
-            s_user = taskResult;
-            return task.IsFaulted;
+            client.Child("Users").Child(token.User.LocalId).PutAsync(new User
+            {
+                BookListID = new List<string>(),
+                Score = 0
+            }).Wait();
+            var task = client.Child("Users").Child(token.User.LocalId).OnceSingleAsync<User>();
+            var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
+            taskEnd.Wait();
+            if (taskEnd.Result == task)
+            {
+                try { task.Wait(); } catch { return false; }
+                s_user = task.Result;
+                return true;
+            }
+            else return false;
         }
-        private static async Task<bool> LoadSetting()
+        private static bool LoadSetting()
         {
-            var task = client.Child("Setting").OnceSingleAsync<Setting>();
-            var taskResult = await task;
-            s_setting = taskResult;
-            return task.IsFaulted;
+            var task = client.Child("Setting").OnceSingleAsync<Setting>(new TimeSpan(0, 0, 2));
+            var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
+            taskEnd.Wait();
+            if (taskEnd.Result == task)
+            {
+                try { task.Wait(); } catch { return false; }
+                s_setting = task.Result;
+                return true;
+            }
+            else return false;
+        }
+        public static async Task RefreshToken()
+        {
+            while (true)
+            {
+                var task = token.GetFreshAuthAsync();
+                try { task.Wait(); } catch { continue; }
+                token = task.Result;
+                await Task.Delay(token.ExpiresIn);
+            }
         }
         #endregion
-        public static async Task<bool> Load(string username, string password)
+        public static bool Load(string username, string password)
         {
             if (client == null)
                 client = SignIn(username, password);
             if (client == null)
                 return false;
-
+            var task0 = RefreshToken();
             var task1 = LoadBook();
             var task2 = LoadTags();
             var task3 = LoadUser();
             var task4 = LoadSetting();
-
+            /*
             bool error, result;
             result = true;
             try { error = await task1; } catch { error = true; }
@@ -166,7 +207,7 @@ namespace BookRecommendationApp.Model
                 task4 = LoadSetting();
                 try { error = await task4; } catch { error = true; }
             }
-
+            //*/
             return true;
         }
         #endregion

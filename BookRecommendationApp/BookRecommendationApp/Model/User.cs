@@ -9,7 +9,7 @@ namespace BookRecommendationApp.Model
 {
     public partial class User
     {
-        public ObservableCollection<string> BookListID { get; }
+        public List<string> BookListID { get; set; }
         // not username
         // not password
         public Int32 Score { get; set; }
