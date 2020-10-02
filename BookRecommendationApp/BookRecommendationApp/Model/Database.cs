@@ -60,8 +60,10 @@ namespace BookRecommendationApp.Model
         static private FirebaseClient SignIn(string email, string password, bool triedOnce = false)
         {
             var authActionSignIn = authProvider.SignInWithEmailAndPasswordAsync(email, password);
-            authActionSignIn.Wait();
-            if (authActionSignIn.IsFaulted)
+            bool error = false;
+            try { authActionSignIn.Wait(); }
+            catch { error = true; }
+            if (authActionSignIn.IsFaulted || error)
             {
                 if (triedOnce)
                 {
@@ -75,9 +77,14 @@ namespace BookRecommendationApp.Model
                         SignUpPromptTitle, MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
-                        SignUp(email, password);
+                        try { SignUp(email, password); }
+                        catch {
+                            MessageBox.Show(SignUpFailedPrompt);
+                            return null;
+                        }
                         return SignIn(email, password);
                     }
+                    else return null;
                 }
             }
             token = authActionSignIn.Result;
@@ -130,10 +137,35 @@ namespace BookRecommendationApp.Model
             var task3 = LoadUser();
             var task4 = LoadSetting();
 
-            await task1;
-            await task2;
-            await task3;
-            await task4;
+            bool error, result;
+            result = true;
+            try { error = await task1; } catch { error = true; }
+            if (error)
+            {
+                task1 = LoadBook();
+                try { error = await task1; } catch { error = true; }
+            }
+            result &= error;
+            try { error = await task2; } catch { error = true; }
+            if (error)
+            {
+                task2 = LoadTags();
+                try { error = await task2; } catch { error = true; }
+            }
+            result &= error;
+            try { error = await task3; } catch { error = true; }
+            if (error)
+            {
+                task3 = LoadUser();
+                try { error = await task3; } catch { error = true; }
+            }
+            result &= error;
+            try { error = await task4; } catch { error = true; }
+            if (error)
+            {
+                task4 = LoadSetting();
+                try { error = await task4; } catch { error = true; }
+            }
 
             return true;
         }

@@ -21,8 +21,12 @@ namespace BookRecommendationApp
         private void button1_Click(object sender, EventArgs e)
         {
             var task = Database.Load(textBox1.Text, textBox2.Text);
-            task.Wait();
-            if (task.Result)
+            task.Wait(30000);
+            if (!task.IsCompleted)
+                MessageBox.Show("Timeout.");
+            else if (!task.Result)
+                MessageBox.Show("Failed.");
+            else 
             {
                 FormMain main = new FormMain();
                 main.Show(this);
