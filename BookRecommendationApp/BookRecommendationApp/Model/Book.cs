@@ -25,5 +25,6 @@ namespace BookRecommendationApp.Model
 
         public string TacGia { get; set; }
         public string Ten { get; set; }
+        public string Description { get; set; }
     }
 }
