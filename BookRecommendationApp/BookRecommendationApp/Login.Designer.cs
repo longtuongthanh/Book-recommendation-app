@@ -30,7 +30,6 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.butExit = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,6 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.butLog = new System.Windows.Forms.Button();
             this.butRe = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -50,8 +50,9 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 190);
+            this.panel1.Size = new System.Drawing.Size(300, 154);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -60,28 +61,21 @@
             this.butExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.butExit.FlatAppearance.BorderSize = 0;
             this.butExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butExit.Location = new System.Drawing.Point(366, 1);
+            this.butExit.Location = new System.Drawing.Point(274, 1);
+            this.butExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.butExit.Name = "butExit";
-            this.butExit.Size = new System.Drawing.Size(33, 31);
+            this.butExit.Size = new System.Drawing.Size(25, 25);
             this.butExit.TabIndex = 8;
             this.butExit.UseVisualStyleBackColor = true;
             this.butExit.Click += new System.EventHandler(this.butExit_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(150, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(141, 129);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel2.Location = new System.Drawing.Point(50, 290);
+            this.panel2.Location = new System.Drawing.Point(38, 236);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(300, 1);
+            this.panel2.Size = new System.Drawing.Size(225, 1);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -90,27 +84,30 @@
             this.textBox2.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(50, 260);
+            this.textBox2.Location = new System.Drawing.Point(38, 211);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(300, 24);
+            this.textBox2.Size = new System.Drawing.Size(225, 20);
             this.textBox2.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(46, 219);
+            this.label1.Location = new System.Drawing.Point(34, 178);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 23);
+            this.label1.Size = new System.Drawing.Size(71, 19);
             this.label1.TabIndex = 3;
             this.label1.Text = "Username";
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel3.Location = new System.Drawing.Point(50, 406);
+            this.panel3.Location = new System.Drawing.Point(38, 330);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(300, 1);
+            this.panel3.Size = new System.Drawing.Size(225, 1);
             this.panel3.TabIndex = 1;
             this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -119,18 +116,20 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Malgun Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(50, 376);
+            this.textBox1.Location = new System.Drawing.Point(38, 306);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(300, 24);
+            this.textBox1.Size = new System.Drawing.Size(225, 20);
             this.textBox1.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Malgun Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(46, 335);
+            this.label2.Location = new System.Drawing.Point(34, 272);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 23);
+            this.label2.Size = new System.Drawing.Size(67, 19);
             this.label2.TabIndex = 3;
             this.label2.Text = "Password";
             // 
@@ -141,9 +140,10 @@
             this.butLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.butLog.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.butLog.ForeColor = System.Drawing.SystemColors.Control;
-            this.butLog.Location = new System.Drawing.Point(50, 445);
+            this.butLog.Location = new System.Drawing.Point(38, 362);
+            this.butLog.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.butLog.Name = "butLog";
-            this.butLog.Size = new System.Drawing.Size(300, 46);
+            this.butLog.Size = new System.Drawing.Size(225, 37);
             this.butLog.TabIndex = 4;
             this.butLog.Text = "Login";
             this.butLog.UseVisualStyleBackColor = false;
@@ -155,19 +155,30 @@
             this.butRe.FlatAppearance.BorderSize = 0;
             this.butRe.Font = new System.Drawing.Font("Malgun Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.butRe.ForeColor = System.Drawing.Color.LightSkyBlue;
-            this.butRe.Location = new System.Drawing.Point(50, 497);
+            this.butRe.Location = new System.Drawing.Point(38, 404);
+            this.butRe.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.butRe.Name = "butRe";
-            this.butRe.Size = new System.Drawing.Size(300, 46);
+            this.butRe.Size = new System.Drawing.Size(225, 37);
             this.butRe.TabIndex = 4;
             this.butRe.Text = "Register";
             this.butRe.UseVisualStyleBackColor = false;
             this.butRe.Click += new System.EventHandler(this.butLog_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(100, 27);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 622);
+            this.ClientSize = new System.Drawing.Size(300, 505);
             this.Controls.Add(this.butRe);
             this.Controls.Add(this.butLog);
             this.Controls.Add(this.label2);
@@ -178,6 +189,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
