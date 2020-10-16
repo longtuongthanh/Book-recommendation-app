@@ -1,54 +1,24 @@
 ﻿using BookRecommendationApp.Model;
+using Firebase.Auth;
+using Firebase.Database;
+using Firebase.Database.Query;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using Firebase.Database.Query;
-using Newtonsoft.Json;
-using System.Reactive.Linq;
-using Firebase.Auth;
-using Firebase.Database;
 
 namespace BookRecommendationApp
 {
-    public partial class FormSignIn : Form
+    public class Firebase
     {
-        public FormSignIn()
-        {
-            InitializeComponent();
-        }
-        
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (LoadFirebase(textBox1.Text, textBox2.Text)) 
-            {
-                FormMain main = new FormMain();
-                main.Show(this);
-                main.FormClosing += (obj, args) => this.Visible = true;
-                this.Visible = false;
-            }
-        }
-
         #region Constant
-        private const string SignUpFailedPrompt =
-            "Đã có lỗi xảy ra. Không đăng kí được.";
-        private const string SignUpYesNoPromptContent =
-            "Không nhận ra bạn. Bạn có muốn đăng kí?";
-        private const string SignUpPromptTitle = "Đăng kí?";
-        private const string SignInFailedPrompt
-            = "Không thể đăng nhập. Xin thử lại sau ít phút.";
         private const int TimeOut = 10000;
-        private const string LoadDataFromFirebaseFailed = 
-            "Không truy cập được hệ thống dữ liệu.\nXin thử lại sau ít phút.";
         #endregion
 
         #region FirebaseSetting
         // TODO: export to file
+        // TODO: encrypt said file
         private const string firebaseApiKey = "AIzaSyDu098TxwLgFJsfaenUPBfC1z9jyGGT2N8";
         private const string databaseURL = "https://fir-test-bd7d1.firebaseio.com";
 
@@ -57,25 +27,50 @@ namespace BookRecommendationApp
         private FirebaseClient client = null;
         private FirebaseAuthLink token = null;
         private Task refreshToken;
+
+        public FirebaseAuthLink Token
+        {
+            get => token;
+            set
+            {
+                token = value;
+                Client = new FirebaseClient(databaseURL,
+                new FirebaseOptions
+                {
+                    AuthTokenAsyncFactory = () => Task.FromResult(Token.FirebaseToken)
+                });
+            }
+        }
+
+        public FirebaseClient Client { get => client; set => client = value; }
         #endregion
 
         #region LoadData
-        private void SignUp(string email, string password)
+        public bool SignUp(string email, string password)
         {
             var authActionSignUp = authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
-            authActionSignUp.Wait();
-            if (authActionSignUp.IsFaulted)
-                MessageBox.Show(SignUpFailedPrompt);
+            bool error = false;
+            try { authActionSignUp.Wait(TimeOut); }
+            catch { error = true; }
+            if (authActionSignUp.IsFaulted || error || !authActionSignUp.IsCompleted)
+            {
+                //MessageBox.Show(SignUpFailedPrompt);
+                return false;
+            }
+            Token = authActionSignUp.Result;
+            return true;
         }
 
-        private FirebaseClient SignIn(string email, string password, bool triedOnce = false)
+        public bool SignIn(string email, string password)
         {
             var authActionSignIn = authProvider.SignInWithEmailAndPasswordAsync(email, password);
             bool error = false;
-            try { authActionSignIn.Wait(); }
+            try { authActionSignIn.Wait(TimeOut); }
             catch { error = true; }
-            if (authActionSignIn.IsFaulted || error)
+            if (authActionSignIn.IsFaulted || error || !authActionSignIn.IsCompleted)
             {
+                return false;
+                /*
                 if (triedOnce)
                 {
                     MessageBox.Show(SignInFailedPrompt);
@@ -98,19 +93,16 @@ namespace BookRecommendationApp
                     }
                     else return null;
                 }
+                //*/
             }
-            token = authActionSignIn.Result;
-            return new FirebaseClient(databaseURL,
-                new FirebaseOptions
-                {
-                    AuthTokenAsyncFactory = () => Task.FromResult(token.FirebaseToken)
-                });
+            Token = authActionSignIn.Result;
+            return true;
         }
 
         #region Tasks
         private bool LoadBook()
         {
-            var task = client.Child("Books").OnceAsync<Book>();
+            var task = Client.Child("Books").OnceAsync<Book>();
             var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
             taskEnd.Wait();
             if (taskEnd.Result == task)
@@ -118,51 +110,51 @@ namespace BookRecommendationApp
                 try { task.Wait(); } catch { return false; }
                 var taskResult = task.Result;
                 Database.Books = taskResult.Select(item => item.Object).ToList();
-                return task.IsFaulted;
+                return !task.IsFaulted;
             }
             else return false;
         }
         private bool LoadTags()
         {
-            var task = client.Child("Tags").OnceSingleAsync<List<string>>();
+            var task = Client.Child("Tags").OnceSingleAsync<List<string>>();
             var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
             taskEnd.Wait();
             if (taskEnd.Result == task)
             {
                 try { task.Wait(); } catch { return false; }
                 Database.Tags = task.Result;
-                return task.IsFaulted || (!task.IsCompleted);
+                return !task.IsFaulted;
             }
             else return false;
         }
         private bool LoadUser()
         {
-            client.Child("Users").Child(token.User.LocalId).PutAsync(new Model.User
+            Client.Child("Users").Child(Token.User.LocalId).PutAsync(new Model.User
             {
                 BookListID = new List<string>(),
                 Score = 0
             }).Wait();
-            var task = client.Child("Users").Child(token.User.LocalId).OnceSingleAsync<Model.User>();
+            var task = Client.Child("Users").Child(Token.User.LocalId).OnceSingleAsync<Model.User>();
             var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
             taskEnd.Wait();
             if (taskEnd.Result == task)
             {
                 try { task.Wait(); } catch { return false; }
                 Database.User = task.Result;
-                return true;
+                return !task.IsFaulted;
             }
             else return false;
         }
         private bool LoadSetting()
         {
-            var task = client.Child("Setting").OnceSingleAsync<Setting>(new TimeSpan(0, 0, 2));
+            var task = Client.Child("Setting").OnceSingleAsync<Setting>(new TimeSpan(0, 0, 2));
             var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
             taskEnd.Wait();
             if (taskEnd.Result == task)
             {
                 try { task.Wait(); } catch { return false; }
                 Database.Setting = task.Result;
-                return true;
+                return !task.IsFaulted;
             }
             else return false;
         }
@@ -170,31 +162,31 @@ namespace BookRecommendationApp
         {
             while (true)
             {
-                var task = token.GetFreshAuthAsync();
+                var task = Token.GetFreshAuthAsync();
                 try { task.Wait(); } catch { continue; }
-                token = task.Result;
-                await Task.Delay(token.ExpiresIn);
+                Token = task.Result;
+                await Task.Delay(Token.ExpiresIn);
             }
         }
         #endregion
 
-        public bool LoadFirebase(string username, string password)
+        public bool LoadFirebase(string username = null, string password = null)
         {
-            if (client == null)
-                client = SignIn(username, password);
-            if (client == null)
+            bool result = true;
+            if (Client == null)
+                result = SignIn(username, password);
+            if ((Client == null) || (result == false))
                 return false;
 
             refreshToken = RefreshToken();
-            bool result = true;
             result &= LoadBook();
             result &= LoadTags();
             result &= LoadUser();
             result &= LoadSetting();
-
+            /*
             if (result == false)
                 MessageBox.Show(LoadDataFromFirebaseFailed);
-
+            //*/
             return result;
         }
         #endregion
@@ -202,14 +194,12 @@ namespace BookRecommendationApp
         #region CloseFirebase
         public void CloseFirebase()
         {
-            client.Dispose();
+            Client.Dispose();
             refreshToken.Dispose();
-            client = null;
-            token = null;
+            Client = null;
+            Token = null;
             refreshToken = null;
         }
         #endregion
     }
-
-    public partial class FormMain : Form { }
 }
