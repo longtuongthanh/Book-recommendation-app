@@ -31,6 +31,8 @@ namespace BookRecommendationApp
         {
             MainMenu mMenu = new MainMenu();
             mMenu.Show();
+            mMenu.FormClosing += (obj, arg) => { this.Visible = true; };
+            this.Visible = false;
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
