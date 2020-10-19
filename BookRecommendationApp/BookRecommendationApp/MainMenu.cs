@@ -92,5 +92,17 @@ namespace BookRecommendationApp
             this.panelLoad.Controls.Add(frmHelp);
             frmHelp.Show();
         }
+
+
+        private void butSearch_Click(object sender, EventArgs e)
+        {
+            this.panelLoad.Controls.Clear();
+            frmSearch frmSearch = new frmSearch() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            frmSearch.FormBorderStyle = FormBorderStyle.None;
+            this.panelLoad.Controls.Add(frmSearch);
+            frmSearch.Show();
+        }
+
+       
     }
 }

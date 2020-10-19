@@ -283,6 +283,16 @@ namespace BookRecommendationApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap diary__2_ {
+            get {
+                object obj = ResourceManager.GetObject("diary (2)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap doubt {
             get {
                 object obj = ResourceManager.GetObject("doubt", resourceCulture);
@@ -406,6 +416,16 @@ namespace BookRecommendationApp.Properties {
         internal static System.Drawing.Bitmap levels1 {
             get {
                 object obj = ResourceManager.GetObject("levels1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logo1 {
+            get {
+                object obj = ResourceManager.GetObject("logo1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
