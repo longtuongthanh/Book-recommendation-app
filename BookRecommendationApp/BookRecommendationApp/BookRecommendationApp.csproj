@@ -185,12 +185,6 @@
     <Compile Include="FormSearch.Designer.cs">
       <DependentUpon>FormSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSetting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormSetting.Designer.cs">
-      <DependentUpon>FormSetting.cs</DependentUpon>
-    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,9 +220,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSearch.resx">
       <DependentUpon>FormSearch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormSetting.resx">
-      <DependentUpon>FormSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -416,6 +407,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\diary %282%29.png" />
+    <None Include="Resources\books.png" />
+    <None Include="Resources\download.png" />
+    <None Include="Resources\81mWACgHKxL.jpg" />
     <Content Include="Resources\logo1.ico" />
     <Content Include="Resources\logo1.png" />
   </ItemGroup>
