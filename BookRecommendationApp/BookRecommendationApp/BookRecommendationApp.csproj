@@ -161,6 +161,12 @@
     <Compile Include="FormAcc.Designer.cs">
       <DependentUpon>FormAcc.cs</DependentUpon>
     </Compile>
+    <Compile Include="BookItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookItem.Designer.cs">
+      <DependentUpon>BookItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormHelp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,7 @@
     </Compile>
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\Database.cs" />
+    <Compile Include="Model\Picture.cs" />
     <Compile Include="Model\Setting.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
@@ -208,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAcc.resx">
       <DependentUpon>FormAcc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookItem.resx">
+      <DependentUpon>BookItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormHelp.resx">
       <DependentUpon>FormHelp.cs</DependentUpon>
