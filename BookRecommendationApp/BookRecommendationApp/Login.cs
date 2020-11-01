@@ -85,7 +85,7 @@ namespace BookRecommendationApp
 
         }
 
-        Firebase firebase = new Firebase();
+        Firebase firebase = Firebase.Ins;
 
         #region Constant
         private const string SignUpFailedPrompt =

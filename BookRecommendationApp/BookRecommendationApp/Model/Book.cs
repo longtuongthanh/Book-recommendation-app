@@ -23,8 +23,10 @@ namespace BookRecommendationApp.Model
         public Int32 AddToList { get; set; }
         public Int32 InitialScore { get; set; }
 
-        public string TacGia { get; set; }
-        public string Ten { get; set; }
+        public string Author { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
+
+        public string PictureFile { get; set; }
     }
 }
