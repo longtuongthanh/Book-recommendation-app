@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookRecommendationApp.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,12 @@ namespace BookRecommendationApp
             InitializeComponent();
         }
 
+        public void AddBook(Book book)
+        {
+            // TODO
+            // user
+            // form
+        }
         private void label2_Click(object sender, EventArgs e)
         {
 

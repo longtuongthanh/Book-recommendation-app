@@ -13,7 +13,7 @@ namespace BookRecommendationApp
 {
     public partial class BookItem : Form
     {
-        public BookItem(Book book, EventHandler onSelectItem)
+        public BookItem(Book book, EventHandler onSelectItem, EventHandler onAddToList)
         {
             InitializeComponent();
             
@@ -37,6 +37,8 @@ namespace BookRecommendationApp
                 ; // TODO: use default picture
 
             picture.MouseClick += (obj, arg) => { onSelectItem(book, arg); };
+            labelName.MouseClick += (obj, arg) => { onSelectItem(book, arg); };
+            button1.MouseClick += (obj, arg) => { onAddToList(book, arg); };
         }
     }
 }
