@@ -36,6 +36,18 @@ namespace BookRecommendationApp.Model
             get => s_setting;
             set => s_setting = value;
         }
+        static public void Add(Book book)
+        {
+
+        }
+        static public void Edit(User user)
+        {
+
+        }
+        static public void Add(string tag)
+        {
+
+        }
         #endregion
     }
 }

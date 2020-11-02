@@ -121,7 +121,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(119, 17);
             this.label5.TabIndex = 1;
-            this.label5.Text = "by Hirohiko Araki ";
+            this.label5.Text = "bởi Hirohiko Araki ";
             // 
             // label6
             // 

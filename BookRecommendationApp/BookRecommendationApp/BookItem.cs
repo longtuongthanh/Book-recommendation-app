@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace BookRecommendationApp
 {
-    public partial class BookInfo : Form
+    public partial class BookItem : Form
     {
-        public BookInfo(Book book)
+        public BookItem(Book book, EventHandler onSelectItem)
         {
             InitializeComponent();
-
+            
             labelName.Text = book.Name;
             labelAuthor.Text = "bởi " + book.Author;
             labelDesc.Text = book.Description;
@@ -35,6 +35,8 @@ namespace BookRecommendationApp
                 picture.Image = pic.GetImage();
             else
                 ; // TODO: use default picture
+
+            picture.MouseClick += (obj, arg) => { onSelectItem(book, arg); };
         }
     }
 }
