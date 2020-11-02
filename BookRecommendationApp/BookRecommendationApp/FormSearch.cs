@@ -10,19 +10,14 @@ using System.Windows.Forms;
 
 namespace BookRecommendationApp
 {
-    public partial class FormMyBooks : Form
+    public partial class frmSearch : Form
     {
-        public FormMyBooks()
+        public frmSearch()
         {
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void frmSearch_Load(object sender, EventArgs e)
         {
 
         }

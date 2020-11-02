@@ -29,13 +29,75 @@ namespace BookRecommendationApp
 
         private void butLog_Click(object sender, EventArgs e)
         {
+            if (!firebase.SignIn(Username.Text, Password.Text))
+            {
+                DialogResult result =
+                        MessageBox.Show(SignUpYesNoPromptContent,
+                        SignUpPromptTitle, MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    if (!firebase.SignUp(Username.Text, Password.Text))
+                    {
+                        MessageBox.Show(SignUpFailedPrompt);
+                        return;
+                    }
+                }
+                else if (!firebase.SignIn(Username.Text, Password.Text))
+                {
+                    MessageBox.Show(SignInFailedPrompt);
+                    return;
+                }
+            }
+
+            if (!firebase.LoadFirebase())
+            {
+                MessageBox.Show(LoadDataFromFirebaseFailed);
+                return;
+            }
+            OpenMainMenu();
+        }
+
+        private void OpenMainMenu()
+        {
             MainMenu mMenu = new MainMenu();
             mMenu.Show();
+            mMenu.FormClosing += (obj, arg) => { this.Visible = true; };
+            this.Visible = false;
+        }
+
+        private void butRe_Click(object sender, EventArgs e)
+        {
+            if (!firebase.SignUp(Username.Text, Password.Text))
+            {
+                MessageBox.Show(SignUpFailedPrompt);
+                return;
+            }
+            if (!firebase.LoadFirebase())
+            {
+                MessageBox.Show(LoadDataFromFirebaseFailed);
+                return;
+            }
+            OpenMainMenu();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
+
+        Firebase firebase = new Firebase();
+
+        #region Constant
+        private const string SignUpFailedPrompt =
+            "Đã có lỗi xảy ra. Không đăng kí được.";
+        private const string SignUpYesNoPromptContent =
+            "Không nhận ra bạn. Bạn có muốn đăng kí?";
+        private const string SignUpPromptTitle = "Đăng kí?";
+        private const string SignInFailedPrompt
+            = "Không thể đăng nhập. Xin thử lại sau ít phút.";
+        private const string LoadDataFromFirebaseFailed =
+            "Không truy cập được hệ thống dữ liệu.\nXin thử lại sau ít phút.";
+        #endregion
+
     }
 }

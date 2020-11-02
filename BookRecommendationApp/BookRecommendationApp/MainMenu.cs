@@ -62,19 +62,7 @@ namespace BookRecommendationApp
             frmMB.FormBorderStyle = FormBorderStyle.None;
             this.panelLoad.Controls.Add(frmMB);
             frmMB.Show();
-        }
-
-        private void butSetting_Click(object sender, EventArgs e)
-        {
-            this.panelLoad.Controls.Clear();
-            FormSetting frmSet = new FormSetting() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            frmSet.FormBorderStyle = FormBorderStyle.None;
-            this.panelLoad.Controls.Add(frmSet);
-            frmSet.Show();
-        }
-
-       
-
+        }           
         private void butAcc_Click(object sender, EventArgs e)
         {
             this.panelLoad.Controls.Clear();
@@ -91,6 +79,31 @@ namespace BookRecommendationApp
             frmHelp.FormBorderStyle = FormBorderStyle.None;
             this.panelLoad.Controls.Add(frmHelp);
             frmHelp.Show();
+        }
+
+
+        private void butSearch_Click(object sender, EventArgs e)
+        {
+            this.panelLoad.Controls.Clear();
+            frmSearch frmSearch = new frmSearch() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            frmSearch.FormBorderStyle = FormBorderStyle.None;
+            this.panelLoad.Controls.Add(frmSearch);
+            frmSearch.Show();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

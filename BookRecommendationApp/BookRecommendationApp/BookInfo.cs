@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BookRecommendationApp
 {
-    public partial class FormSetting : Form
+    public partial class BookInfo : Form
     {
-        public FormSetting()
+        public BookInfo()
         {
             InitializeComponent();
         }
