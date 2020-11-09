@@ -40,5 +40,10 @@ namespace BookRecommendationApp
             labelName.MouseClick += (obj, arg) => { onSelectItem(book, arg); };
             button1.MouseClick += (obj, arg) => { onAddToList(book, arg); };
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

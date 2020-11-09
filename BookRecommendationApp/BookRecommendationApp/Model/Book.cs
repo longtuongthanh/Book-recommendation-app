@@ -28,5 +28,8 @@ namespace BookRecommendationApp.Model
         public string Description { get; set; }
 
         public string PictureFile { get; set; }
+
+        public string Link { get; set; }
+        
     }
 }

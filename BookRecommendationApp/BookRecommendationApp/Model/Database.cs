@@ -1,5 +1,7 @@
 ﻿using Firebase.Auth;
 using Firebase.Database;
+using Firebase.Database.Query;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,11 +40,18 @@ namespace BookRecommendationApp.Model
         }
         static public void Add(Book book)
         {
-
+            Firebase.Ins.Client.Child("Books").Child(book.Name).PutAsync(JsonConvert.SerializeObject(book)).Wait();
         }
-        static public void Edit(User user)
+        static public void Add(Picture pic)
         {
 
+            string FilePath = pic.FilePath.Replace(".", ",");
+            Firebase.Ins.Client.Child("Picture").Child(FilePath).PutAsync(JsonConvert.SerializeObject(pic.Content)).Wait();
+        }
+        static public void EditUser()
+        {
+            string uid = Firebase.Ins.Token.User.LocalId;
+            Firebase.Ins.Client.Child("Users").Child(uid).PutAsync(User);
         }
         static public void Add(string tag)
         {

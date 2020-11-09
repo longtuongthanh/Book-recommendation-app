@@ -20,12 +20,7 @@ namespace BookRecommendationApp
             this.panelLoad.Controls.Add(frmHome);
             frmHome.Show();
         }
-
-       
-
-        
-
-        
+  
 
         private void butExit_Click_1(object sender, EventArgs e)
         {
@@ -110,19 +105,17 @@ namespace BookRecommendationApp
             frmSearch.Show();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
+            foreach (Control item in this.panelLoad.Controls)
+                item.Dispose();
 
-        }
+            this.panelLoad.Controls.Clear();
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+            AddBooks frmadd = new AddBooks { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            frmadd.FormBorderStyle = FormBorderStyle.None;
+            this.panelLoad.Controls.Add(frmadd);
+            frmadd.Show();
         }
     }
 }

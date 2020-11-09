@@ -18,6 +18,13 @@ namespace BookRecommendationApp.Model
         public string FilePath { get; set; }
         public string Content { get; set; }
 
+        public void SetNewName()
+        {
+            string newName = FilePath.GetHashCode().ToString();
+            string type = FilePath.Split('.').Last();
+            FilePath = newName + '.' + type;
+        }
+
         public Image GetImage()
         {
             if (image != null)
@@ -67,6 +74,21 @@ namespace BookRecommendationApp.Model
             {
                 byte[] data = Decrypt(Content);
                 cout.Write(data, 0, data.Length);
+            }
+        }
+
+        public void LoadContent()
+        {
+            // Invalid Picture object
+            if (FilePath == null)
+                return;
+
+            using (FileStream cin = File.OpenRead(FilePath))
+            {
+                byte[] data = new byte[cin.Length];
+                cin.Read(data, 0, data.Length);
+
+                Content = Encrypt(data);
             }
         }
 

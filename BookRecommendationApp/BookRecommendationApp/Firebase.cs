@@ -63,6 +63,12 @@ namespace BookRecommendationApp
                 return false;
             }
             Token = authActionSignUp.Result;
+
+            Client.Child("Users").Child(Token.User.LocalId).PutAsync(new Model.User
+            {
+                BookListID = new List<string>(),
+                Score = 0
+            }).Wait();
             return true;
         }
 
@@ -134,11 +140,6 @@ namespace BookRecommendationApp
         }
         private bool LoadUser()
         {
-            Client.Child("Users").Child(Token.User.LocalId).PutAsync(new Model.User
-            {
-                BookListID = new List<string>(),
-                Score = 0
-            }).Wait();
             var task = Client.Child("Users").Child(Token.User.LocalId).OnceSingleAsync<Model.User>();
             var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
             taskEnd.Wait();
@@ -167,6 +168,7 @@ namespace BookRecommendationApp
         public string LoadPicture(string FilePath)
         {
             // Firebase doesn't accept '.'
+            if (FilePath == null) return null;
             FilePath = FilePath.Replace(".", ",");
 
             var task = Client.Child("Picture").Child(FilePath).OnceSingleAsync<string>();

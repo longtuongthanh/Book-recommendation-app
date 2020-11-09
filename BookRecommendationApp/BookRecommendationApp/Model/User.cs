@@ -16,5 +16,6 @@ namespace BookRecommendationApp.Model
         // Score measures overall behaviour & transgressions, including
         // fake book declaration, invalid tags, toxic comment, 
         // and others.
+        public string PictureFile { get; set; }
     }
 }
