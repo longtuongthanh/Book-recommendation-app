@@ -30,6 +30,6 @@ namespace BookRecommendationApp.Model
         public string PictureFile { get; set; }
 
         public string Link { get; set; }
-        
+        public List<string> Tags { get; set; }
     }
 }

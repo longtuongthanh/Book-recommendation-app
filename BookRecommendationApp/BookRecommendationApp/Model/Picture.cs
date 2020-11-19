@@ -18,10 +18,14 @@ namespace BookRecommendationApp.Model
         public string FilePath { get; set; }
         public string Content { get; set; }
 
+        // WARNING: needs Content != null
         public void SetNewName()
         {
-            string newName = FilePath.GetHashCode().ToString();
-            string type = FilePath.Split('.').Last();
+            if (Content == null)
+                throw new NotImplementedException();
+
+            string newName = Content.GetHashCode().ToString();
+            string type = Content.Split('.').Last();
             FilePath = newName + '.' + type;
         }
 

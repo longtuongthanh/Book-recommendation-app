@@ -17,5 +17,7 @@ namespace BookRecommendationApp.Model
         // fake book declaration, invalid tags, toxic comment, 
         // and others.
         public string PictureFile { get; set; }
+
+        public User() { BookListID = new List<string>(); }
     }
 }

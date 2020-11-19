@@ -13,9 +13,19 @@ namespace BookRecommendationApp
 {
     public partial class frmSearch : Form
     {
+        private string searchCriteria;
         public frmSearch()
         {
             InitializeComponent();
+        }
+
+        public string SearchCriteria
+        {
+            get => searchCriteria;
+            set
+            {
+                searchCriteria = value;
+            }
         }
 
         private void frmSearch_Load(object sender, EventArgs e)
