@@ -10,6 +10,7 @@ namespace BookRecommendationApp.Model
     public partial class User
     {
         public List<string> BookListID { get; set; }
+        public List<string> LikeListID { get; set; }
         // not username
         // not password
         public Int32 Score { get; set; }
