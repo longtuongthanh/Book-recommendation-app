@@ -26,7 +26,9 @@ namespace BookRecommendationApp
         // TODO: export to file
         // TODO: encrypt said file
         private const string firebaseApiKey = "AIzaSyDu098TxwLgFJsfaenUPBfC1z9jyGGT2N8";
+        // Get at Setting->Cloud Messaging->Server Key
         private const string databaseURL = "https://fir-test-bd7d1.firebaseio.com";
+        // Get at Realtime Database
         private FirebaseAuthProvider authProvider =
             new FirebaseAuthProvider(new FirebaseConfig(firebaseApiKey));
         private FirebaseClient client = null;

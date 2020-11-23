@@ -101,6 +101,7 @@ namespace BookRecommendationApp
 
             frmSearch frmSearch = new frmSearch() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             frmSearch.FormBorderStyle = FormBorderStyle.None;
+            frmSearch.SearchCriteria = textBox1.Text;
             this.panelLoad.Controls.Add(frmSearch);
             frmSearch.Show();
         }

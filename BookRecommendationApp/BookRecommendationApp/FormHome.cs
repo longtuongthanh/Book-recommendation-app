@@ -59,8 +59,6 @@ namespace BookRecommendationApp
         }
         private void AddBook(object sender, EventArgs e)
         {
-            
-           
             Panel panelLoad = (this.Parent as Panel);
 
             foreach (Control item in panelLoad.Controls)
