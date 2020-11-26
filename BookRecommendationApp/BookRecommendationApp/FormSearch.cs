@@ -86,16 +86,17 @@ namespace BookRecommendationApp
             list.Sort((it, other) => { return other.Item2 - it.Item2; });
             int showAmount = Math.Min(list.Count, Database.Setting.SearchMaxResultAmount);
             for (int i = 0; i < showAmount; i++)
-            {
-                Panel pal = new Panel()
+                if (list[i].Item2 > 0)
                 {
-                    Width = 350,
-                    Height = 230
-                };
+                    Panel pal = new Panel()
+                    {
+                        Width = 350,
+                        Height = 230
+                    };
 
-                ApplyBookItem(pal, list[i].Item1);
-                flowLayoutPanel1.Controls.Add(pal);
-            }
+                    ApplyBookItem(pal, list[i].Item1);
+                    flowLayoutPanel1.Controls.Add(pal);
+                }
         }
         public void ApplyBookItem(Panel panel, Book book)
         {
