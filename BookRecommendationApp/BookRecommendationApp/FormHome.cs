@@ -72,6 +72,6 @@ namespace BookRecommendationApp
             frmBI.FormBorderStyle = FormBorderStyle.None;
             panelLoad.Controls.Add(frmBI);
             frmBI.Show();
-        }      
+        }
     }
 }

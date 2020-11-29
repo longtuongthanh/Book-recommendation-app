@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,6 +10,25 @@ namespace BookRecommendationApp.Model
 {
     public partial class User
     {
+        [JsonIgnore]
+        private Picture picture;
+        public Picture GetPicture()
+        {
+            if (picture != null)
+                return picture;
+
+            Picture pic = new Picture(PictureFile);
+            if (pic.GetImage() == null)
+            {
+                // Get image from database
+                pic.Content = Database.LoadPicture(pic.FilePath);
+
+                // save image to file
+                pic.SaveImage();
+            }
+            return picture = pic;
+        }
+
         public List<string> BookListID { get; set; }
         public List<string> LikeListID { get; set; }
         // not username

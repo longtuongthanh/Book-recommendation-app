@@ -21,24 +21,16 @@ namespace BookRecommendationApp
             labelAuthor.Text = "bởi " + book.Author;
             labelDesc.Text = book.Description;
 
-            Picture pic = new Picture(book.PictureFile);
-            if (pic.GetImage() == null)
-            {
-                // Get image from database
-                pic.Content = Firebase.Ins.LoadPicture(pic.FilePath);
-
-                // save image to file
-                pic.SaveImage();
-            }
+            Picture pic = book.GetPicture();
 
             if (pic.GetImage() != null)
                 picture.Image = pic.GetImage();
             else
                 ; // TODO: use default picture
 
-            picture.MouseClick += (obj, arg) => { onSelectItem(book, arg); };
-            labelName.MouseClick += (obj, arg) => { onSelectItem(book, arg); };
-            button1.MouseClick += (obj, arg) => { onAddToList(book, arg); };
+            picture.MouseClick += (obj, arg) => { onSelectItem?.Invoke(book, arg); };
+            labelName.MouseClick += (obj, arg) => { onSelectItem?.Invoke(book, arg); };
+            button1.MouseClick += (obj, arg) => { onAddToList?.Invoke(book, arg); };
         }
 
         private void button1_Click(object sender, EventArgs e)

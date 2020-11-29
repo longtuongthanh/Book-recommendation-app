@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,24 @@ namespace BookRecommendationApp.Model
 {
     public partial class Book
     {
+        [JsonIgnore]
+        private Picture picture;
+        public Picture GetPicture()
+        {
+            if (picture != null)
+                return picture;
+
+            Picture pic = new Picture(PictureFile);
+            if (pic.GetImage() == null)
+            {
+                // Get image from database
+                pic.Content = Database.LoadPicture(pic.FilePath);
+
+                // save image to file
+                pic.SaveImage();
+            }
+            return picture = pic;
+        }
         public long GetScore()
         {
             return Database.Setting.AddToListCoefficient * AddToList

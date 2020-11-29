@@ -17,15 +17,7 @@ namespace BookRecommendationApp
         public FormAcc()
         {
             InitializeComponent();
-            Picture pic = new Picture(Database.User.PictureFile);
-            if (pic.GetImage() == null)
-            {
-                // Get image from database
-                pic.Content = Firebase.Ins.LoadPicture(pic.FilePath);
-
-                // save image to file
-                pic.SaveImage();
-            }
+            Picture pic = Database.User.GetPicture();
 
             if (pic.GetImage() != null)
             {

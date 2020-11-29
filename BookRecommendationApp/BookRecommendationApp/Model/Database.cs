@@ -38,6 +38,9 @@ namespace BookRecommendationApp.Model
             get => s_setting;
             set => s_setting = value;
         }
+        #endregion
+
+        #region Functionality
         static public void Add(Book book)
         {
             Firebase.Ins.Client.Child("Books").Child(book.Name).PutAsync(JsonConvert.SerializeObject(book)).Wait();
@@ -55,7 +58,11 @@ namespace BookRecommendationApp.Model
         }
         static public void Add(string tag)
         {
-
+            Firebase.Ins.Client.Child("Tags").PostAsync(tag);
+        }
+        static public string LoadPicture(string FilePath)
+        {
+            return Firebase.Ins.LoadPicture(FilePath);
         }
         #endregion
     }

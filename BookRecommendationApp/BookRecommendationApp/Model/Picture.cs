@@ -17,15 +17,11 @@ namespace BookRecommendationApp.Model
 
         public string FilePath { get; set; }
         public string Content { get; set; }
-
-        // WARNING: needs Content != null
+        
         public void SetNewName()
         {
-            if (Content == null)
-                throw new NotImplementedException();
-
-            string newName = Content.GetHashCode().ToString();
-            string type = Content.Split('.').Last();
+            string newName = Guid.NewGuid().ToString();
+            string type = FilePath.Split('.').Last();
             FilePath = newName + '.' + type;
         }
 
@@ -96,6 +92,7 @@ namespace BookRecommendationApp.Model
             }
         }
 
+        #region Encrypt & Decrypt
         private const int offset = 0x40;
         private const int shift = 4;
         private static Encoding encoding = Encoding.UTF8;
@@ -135,6 +132,7 @@ namespace BookRecommendationApp.Model
 
             return data2;
         }
+        #endregion
 
         public void Dispose()
         {
