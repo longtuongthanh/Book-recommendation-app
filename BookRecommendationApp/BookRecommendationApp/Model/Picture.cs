@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookRecommendationApp.Model
 {
+    // WARNING: DO NOT SERIALIZE & PUSH TO DATABASE
     public class Picture : IDisposable
     {
         private Image image = null;
@@ -60,6 +61,7 @@ namespace BookRecommendationApp.Model
             }
         }
 
+        // Save to Computer
         public void SaveImage()
         {
             // if Content (provided outside) is not available
@@ -77,6 +79,7 @@ namespace BookRecommendationApp.Model
             }
         }
 
+        // Load from Computer
         public void LoadContent()
         {
             // Invalid Picture object

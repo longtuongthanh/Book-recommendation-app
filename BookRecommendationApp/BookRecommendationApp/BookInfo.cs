@@ -27,6 +27,24 @@ namespace BookRecommendationApp
                 picture.Image = pic.GetImage();
             else
                 ; // TODO: use default picture
+
+            #region Action based on bookList.
+            // Action is Remove if book is in booklist
+            // Action is Add if book is not in booklist
+            List<string> bookList = Database.User.BookListID;
+            if (bookList.Contains(book.Name))
+            {
+                button1.Text = "Xóa";
+                button1.MouseClick += (obj, arg) => Database.User.RemoveBook(book);
+                button1.BackColor = Color.Crimson;
+            }
+            else
+            {
+                button1.Text = "Thêm";
+                button1.MouseClick += (obj, arg) => Database.User.AddBook(book);
+                button1.BackColor = Color.RoyalBlue;
+            }
+            #endregion
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -28,43 +28,27 @@ namespace BookRecommendationApp
             else
                 ; // TODO: use default picture
 
+            #region Action based on bookList.
+            // Action is Remove if book is in booklist
+            // Action is Add if book is not in booklist
             List<string> bookList = Database.User.BookListID;
             if (bookList.Contains(book.Name))
             {
                 button1.Text = "Xóa";
-                button1.MouseClick += (obj, arg) => RemoveBook(book);
+                button1.MouseClick += (obj, arg) => Database.User.RemoveBook(book);
+                button1.BackColor = Color.Crimson;
             }
             else
             {
                 button1.Text = "Thêm";
-                button1.MouseClick += (obj, arg) => AddBook(book);
+                button1.MouseClick += (obj, arg) => Database.User.AddBook(book);
+                button1.BackColor = Color.RoyalBlue;
             }
+            #endregion
 
             picture.MouseClick += (obj, arg) => { onSelectItem?.Invoke(book, arg); };
             labelName.MouseClick += (obj, arg) => { onSelectItem?.Invoke(book, arg); };
             button1.MouseClick += (obj, arg) => { onAction?.Invoke(book, arg); };
-        }
-        private void AddBook(Book book)
-        {
-            List<string> bookList = Database.User.BookListID;
-            if (!bookList.Contains(book.Name))
-            {
-                bookList.Add(book.Name);
-                Database.EditUser();
-            }
-        }
-        private void RemoveBook(Book book)
-        {
-            List<string> bookList = Database.User.BookListID;
-            if (bookList.Contains(book.Name))
-            {
-                bookList.Remove(book.Name);
-                Database.EditUser();
-            }
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

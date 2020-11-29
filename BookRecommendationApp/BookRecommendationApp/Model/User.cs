@@ -10,6 +10,9 @@ namespace BookRecommendationApp.Model
 {
     public partial class User
     {
+        #region Functionality
+        public User() { BookListID = new List<string>(); }
+
         [JsonIgnore]
         private Picture picture;
         public Picture GetPicture()
@@ -29,6 +32,25 @@ namespace BookRecommendationApp.Model
             return picture = pic;
         }
 
+        public void AddBook(Book book)
+        {
+            if (!BookListID.Contains(book.Name))
+            {
+                BookListID.Add(book.Name);
+                Database.EditUser();
+            }
+        }
+        public void RemoveBook(Book book)
+        {
+            if (BookListID.Contains(book.Name))
+            {
+                BookListID.Remove(book.Name);
+                Database.EditUser();
+            }
+        }
+        #endregion
+
+        #region Data
         public List<string> BookListID { get; set; }
         public List<string> LikeListID { get; set; }
         // not username
@@ -38,7 +60,6 @@ namespace BookRecommendationApp.Model
         // fake book declaration, invalid tags, toxic comment, 
         // and others.
         public string PictureFile { get; set; }
-
-        public User() { BookListID = new List<string>(); }
+        #endregion
     }
 }
