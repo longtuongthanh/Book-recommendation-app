@@ -13,6 +13,7 @@ namespace BookRecommendationApp
 {
     public partial class FormMyBooks : Form
     {
+        private Dictionary<Book, Panel> mapBookPanel = new Dictionary<Book, Panel>();
         public FormMyBooks()
         {
             InitializeComponent();
@@ -38,6 +39,9 @@ namespace BookRecommendationApp
         void load()
         {
             flowLayoutPanel1.Controls.Clear();
+            mapBookPanel.Clear();
+
+            // TODO: reload Database
 
             IEnumerable<Book> bookList = Database.Books.Where(
                 item => Database.User.BookListID.Contains(item.Name)
@@ -57,8 +61,10 @@ namespace BookRecommendationApp
 
         public void ApplyBookItem(Panel panel, Book book)
         {
+            mapBookPanel[book] = panel;
+
             BookItem frmBI = new BookItem(
-                book, SelectedBook, null)
+                book, SelectedBook, RemoveBook, "Xóa")
             { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             frmBI.FormBorderStyle = FormBorderStyle.None;
             panel.Controls.Add(frmBI);
@@ -78,6 +84,16 @@ namespace BookRecommendationApp
             frmBI.FormBorderStyle = FormBorderStyle.None;
             panelLoad.Controls.Add(frmBI);
             frmBI.Show();
+        }
+        private void RemoveBook(object sender, EventArgs e)
+        {
+            Book currentBook = sender as Book;
+            Panel currentBookPanel = mapBookPanel[currentBook];
+
+            flowLayoutPanel1.Controls.Remove(currentBookPanel);
+            mapBookPanel.Remove(currentBook);
+
+            Database.User.BookListID.Remove(currentBook.Name);
         }
 
         private void label2_Click(object sender, EventArgs e)

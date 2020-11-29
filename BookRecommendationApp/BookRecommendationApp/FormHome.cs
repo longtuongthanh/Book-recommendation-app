@@ -34,7 +34,6 @@ namespace BookRecommendationApp
         }
         public void ApplyBookItem(Panel panel, Book book)
         {
-            
             BookItem frmBI = new BookItem(
                 book, SelectedBook, AddBook)
             { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
