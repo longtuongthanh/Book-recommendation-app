@@ -20,22 +20,6 @@ namespace BookRecommendationApp
             load();
         }
 
-        public void AddBook(Book book)
-        {
-            Panel pal = new Panel() { Width = 350, Height = 230 };
-            
-            // TODO
-            // user
-            List<string> bookList = Database.User.BookListID;
-            if (!bookList.Contains(book.Name))
-            {
-                bookList.Add(book.Name);
-                Database.EditUser();
-            }
-            // form
-            load();
-        }
-
         void load()
         {
             flowLayoutPanel1.Controls.Clear();
@@ -64,7 +48,7 @@ namespace BookRecommendationApp
             mapBookPanel[book] = panel;
 
             BookItem frmBI = new BookItem(
-                book, SelectedBook, RemoveBook, "Xóa")
+                book, SelectedBook, RemoveBook)
             { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             frmBI.FormBorderStyle = FormBorderStyle.None;
             panel.Controls.Add(frmBI);
@@ -92,8 +76,6 @@ namespace BookRecommendationApp
 
             flowLayoutPanel1.Controls.Remove(currentBookPanel);
             mapBookPanel.Remove(currentBook);
-
-            Database.User.BookListID.Remove(currentBook.Name);
         }
 
         private void label2_Click(object sender, EventArgs e)

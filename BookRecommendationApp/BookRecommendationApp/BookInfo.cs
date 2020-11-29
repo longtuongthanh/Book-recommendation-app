@@ -40,7 +40,6 @@ namespace BookRecommendationApp
 
             FormMyBooks frmBI = new FormMyBooks() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             Book book = sender as Book;
-            frmBI.AddBook(sender as Book);
             frmBI.FormBorderStyle = FormBorderStyle.None;
             panelLoad.Controls.Add(frmBI);
             frmBI.Show();

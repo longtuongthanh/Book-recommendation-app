@@ -13,7 +13,7 @@ namespace BookRecommendationApp
 {
     public partial class BookItem : Form
     {
-        public BookItem(Book book, EventHandler onSelectItem, EventHandler onAction, string actionName = "Thêm")
+        public BookItem(Book book, EventHandler onSelectItem, EventHandler onAction)
         {
             InitializeComponent();
             
@@ -28,12 +28,40 @@ namespace BookRecommendationApp
             else
                 ; // TODO: use default picture
 
-            button1.Text = actionName;
+            List<string> bookList = Database.User.BookListID;
+            if (bookList.Contains(book.Name))
+            {
+                button1.Text = "Xóa";
+                button1.MouseClick += (obj, arg) => RemoveBook(book);
+            }
+            else
+            {
+                button1.Text = "Thêm";
+                button1.MouseClick += (obj, arg) => AddBook(book);
+            }
+
             picture.MouseClick += (obj, arg) => { onSelectItem?.Invoke(book, arg); };
             labelName.MouseClick += (obj, arg) => { onSelectItem?.Invoke(book, arg); };
             button1.MouseClick += (obj, arg) => { onAction?.Invoke(book, arg); };
         }
-
+        private void AddBook(Book book)
+        {
+            List<string> bookList = Database.User.BookListID;
+            if (!bookList.Contains(book.Name))
+            {
+                bookList.Add(book.Name);
+                Database.EditUser();
+            }
+        }
+        private void RemoveBook(Book book)
+        {
+            List<string> bookList = Database.User.BookListID;
+            if (bookList.Contains(book.Name))
+            {
+                bookList.Remove(book.Name);
+                Database.EditUser();
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
 
