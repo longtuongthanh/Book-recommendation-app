@@ -9,6 +9,7 @@ namespace BookRecommendationApp.Model
 {
     public partial class Book
     {
+        #region Functionality
         [JsonIgnore]
         private Picture picture;
         public Picture GetPicture()
@@ -27,6 +28,16 @@ namespace BookRecommendationApp.Model
             }
             return picture = pic;
         }
+        public bool IsValid()
+        {
+            if (Name == null)
+                return false;
+            if (Author == null)
+                return false;
+            if (Description == null)
+                return false;
+            return true;
+        }
         public long GetScore()
         {
             return Database.Setting.AddToListCoefficient * AddToList
@@ -37,7 +48,9 @@ namespace BookRecommendationApp.Model
         // Score measures how often the book gets seen, put in 
         // read lists, and likes. Score starts out equal to the
         // score of the user who posted it.
+        #endregion
         public Int32 Likes { get; set; }
+        public Int32 Dislike { get; set; }
         public Int32 Views { get; set; }
         public Int32 AddToList { get; set; }
         public Int32 InitialScore { get; set; }

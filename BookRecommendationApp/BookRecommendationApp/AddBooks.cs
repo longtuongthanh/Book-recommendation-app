@@ -40,8 +40,6 @@ namespace BookRecommendationApp
             Database.Add(pic);
         }
 
-        
-
         private void picture_Click_1(object sender, EventArgs e)
         {
             string imageLocations = "";

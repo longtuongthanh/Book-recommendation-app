@@ -448,6 +448,10 @@
     <None Include="Resources\books.png" />
     <None Include="Resources\download.png" />
     <None Include="Resources\81mWACgHKxL.jpg" />
+    <None Include="Resources\Dislike%28disabled%29.png" />
+    <Content Include="Resources\Dislike.png" />
+    <None Include="Resources\Like%28disabled%29.png" />
+    <Content Include="Resources\Like.png" />
     <Content Include="Resources\logo1.ico" />
     <Content Include="Resources\logo1.png" />
   </ItemGroup>

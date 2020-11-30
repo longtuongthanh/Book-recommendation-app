@@ -43,19 +43,27 @@ namespace BookRecommendationApp.Model
         #region Functionality
         static public void Add(Book book)
         {
-            Firebase.Ins.Client.Child("Books").Child(book.Name).PutAsync(JsonConvert.SerializeObject(book)).Wait();
+            if (book.IsValid())
+                Firebase.Ins.Client.Child("Books").Child(book.Name).PutAsync(JsonConvert.SerializeObject(book)).Wait();
+            else Console.WriteLine("ERROR: book name is null");
         }
         static public void Add(Picture pic)
         {
             if (pic.FilePath == null || pic.Content == null)
+            {
+                Console.WriteLine("ERROR: invalid picture");
                 return;
+            }
+
             string FilePath = pic.FilePath.Replace(".", ",");
             Firebase.Ins.Client.Child("Picture").Child(FilePath).PutAsync(JsonConvert.SerializeObject(pic.Content)).Wait();
         }
         static public void EditUser()
         {
             string uid = Firebase.Ins.Token.User.LocalId;
-            Firebase.Ins.Client.Child("Users").Child(uid).PutAsync(User);
+            if (uid != null)
+                Firebase.Ins.Client.Child("Users").Child(uid).PutAsync(User);
+            else Console.WriteLine("ERROR: UID is null");
         }
         static public void Add(string tag)
         {
