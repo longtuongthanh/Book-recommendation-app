@@ -32,7 +32,7 @@ namespace BookRecommendationApp.Model
             return picture = pic;
         }
 
-        public void AddBook(Book book)
+        public void AddToBookList(Book book)
         {
             if (!BookListID.Contains(book.Name))
             {
@@ -40,7 +40,7 @@ namespace BookRecommendationApp.Model
                 Database.EditUser();
             }
         }
-        public void RemoveBook(Book book)
+        public void RemoveFromBookList(Book book)
         {
             if (BookListID.Contains(book.Name))
             {
@@ -48,10 +48,59 @@ namespace BookRecommendationApp.Model
                 Database.EditUser();
             }
         }
+        public void AddToLikeList(Book book)
+        {
+            bool userChanged = false;
+            if (!LikeListID.Contains(book.Name))
+            {
+                LikeListID.Add(book.Name);
+                userChanged = true;
+            }
+            if (DislikeListID.Contains(book.Name))
+            {
+                DislikeListID.Remove(book.Name);
+                userChanged = true;
+            }
+            if (userChanged)
+                Database.EditUser();
+        }
+        public void AddToDislikeListID(Book book)
+        {
+            bool userChanged = false;
+            if (!DislikeListID.Contains(book.Name))
+            {
+                DislikeListID.Add(book.Name);
+                userChanged = true;
+            }
+            if (LikeListID.Contains(book.Name))
+            {
+                LikeListID.Remove(book.Name);
+                userChanged = true;
+            }
+            if (userChanged)
+                Database.EditUser();
+        }
+        public void RemoveFromLikeAndDislikeList(Book book)
+        {
+            bool userChanged = false;
+            if (LikeListID.Contains(book.Name))
+            {
+                LikeListID.Remove(book.Name);
+                userChanged = true;
+            }
+            if (DislikeListID.Contains(book.Name))
+            {
+                DislikeListID.Remove(book.Name);
+                userChanged = true;
+            }
+            if (userChanged)
+                Database.EditUser();
+        }
         #endregion
 
         #region Data
         public List<string> BookListID { get; set; }
+        public List<string> DislikeListID { get; set; }
         public List<string> LikeListID { get; set; }
         // not username
         // not password

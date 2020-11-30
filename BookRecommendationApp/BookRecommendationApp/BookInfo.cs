@@ -13,9 +13,12 @@ namespace BookRecommendationApp
 {
     public partial class BookInfo : Form
     {
+        private Book currentBook;
         public BookInfo(Book book)
         {
             InitializeComponent();
+
+            currentBook = book;
 
             labelName.Text = book.Name;
             labelAuthor.Text = "bởi " + book.Author;
@@ -35,13 +38,13 @@ namespace BookRecommendationApp
             if (bookList.Contains(book.Name))
             {
                 button1.Text = "Xóa";
-                button1.MouseClick += (obj, arg) => Database.User.RemoveBook(book);
+                button1.MouseClick += (obj, arg) => Database.User.RemoveFromBookList(book);
                 button1.BackColor = Color.Crimson;
             }
             else
             {
                 button1.Text = "Thêm";
-                button1.MouseClick += (obj, arg) => Database.User.AddBook(book);
+                button1.MouseClick += (obj, arg) => Database.User.AddToBookList(book);
                 button1.BackColor = Color.RoyalBlue;
             }
             #endregion
@@ -57,10 +60,15 @@ namespace BookRecommendationApp
             panelLoad.Controls.Clear();
 
             FormMyBooks frmBI = new FormMyBooks() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            Book book = sender as Book;
+            Book book = currentBook;
             frmBI.FormBorderStyle = FormBorderStyle.None;
             panelLoad.Controls.Add(frmBI);
             frmBI.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Database.User.AddToLikeList(currentBook);
         }
     }
 }
