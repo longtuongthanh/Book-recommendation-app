@@ -13,9 +13,12 @@ namespace BookRecommendationApp
 {
     public partial class BookInfo : Form
     {
+        private Book currentBook;
         public BookInfo(Book book)
         {
             InitializeComponent();
+
+            currentBook = book;
 
             labelName.Text = book.Name;
             labelAuthor.Text = "bởi " + book.Author;
@@ -35,13 +38,21 @@ namespace BookRecommendationApp
             if (bookList.Contains(book.Name))
             {
                 button1.Text = "Xóa";
-                button1.MouseClick += (obj, arg) => Database.User.RemoveBook(book);
+                button1.MouseClick += (obj, arg) =>
+                {
+                    Database.User.RemoveFromBookList(book);
+                    button1_Click(book, arg); ;
+                };
                 button1.BackColor = Color.Crimson;
             }
             else
             {
                 button1.Text = "Thêm";
-                button1.MouseClick += (obj, arg) => Database.User.AddBook(book);
+                button1.MouseClick += (obj, arg) =>
+                {
+                    Database.User.AddToBookList(book);
+                    button1_Click(book, arg);
+                };
                 button1.BackColor = Color.RoyalBlue;
             }
             #endregion
@@ -57,10 +68,44 @@ namespace BookRecommendationApp
             panelLoad.Controls.Clear();
 
             FormMyBooks frmBI = new FormMyBooks() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            Book book = sender as Book;
+            Book book = currentBook;
             frmBI.FormBorderStyle = FormBorderStyle.None;
             panelLoad.Controls.Add(frmBI);
             frmBI.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (!Database.User.LikeListID.Contains(currentBook.Name))
+            {
+                Database.User.AddToLikeList(currentBook);
+
+                this.pictureBox2.Image = Properties.Resources.Dislike_disabled_;
+                this.pictureBox1.Image = Properties.Resources.Like;
+            }
+            else
+            {
+                Database.User.RemoveFromLikeAndDislikeList(currentBook);
+
+                this.pictureBox1.Image = Properties.Resources.Like_disabled_;
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            if (!Database.User.DislikeListID.Contains(currentBook.Name))
+            {
+                Database.User.AddToLikeList(currentBook);
+
+                this.pictureBox2.Image = Properties.Resources.Dislike;
+                this.pictureBox1.Image = Properties.Resources.Like_disabled_;
+            }
+            else
+            {
+                Database.User.RemoveFromLikeAndDislikeList(currentBook);
+
+                this.pictureBox2.Image = Properties.Resources.Dislike_disabled_;
+            }
         }
     }
 }
