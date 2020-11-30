@@ -64,7 +64,7 @@
             // 
             this.pictureBox2.Image = global::BookRecommendationApp.Properties.Resources.Dislike_disabled_;
             this.pictureBox2.Location = new System.Drawing.Point(363, 130);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(36, 33);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -76,7 +76,7 @@
             // 
             this.pictureBox1.Image = global::BookRecommendationApp.Properties.Resources.Like_disabled_;
             this.pictureBox1.Location = new System.Drawing.Point(319, 130);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(36, 33);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
