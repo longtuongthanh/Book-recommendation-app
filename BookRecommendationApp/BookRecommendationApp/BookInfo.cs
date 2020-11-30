@@ -20,6 +20,15 @@ namespace BookRecommendationApp
             labelName.Text = book.Name;
             labelAuthor.Text = "bởi " + book.Author;
             labelDesc.Text = book.Description;
+            foreach (var item in book.Tags)
+            {
+                Label tag = new Label();
+                tag.Text = item;
+                tag.Font = new Font("Microsoft Sans Serif", 12, FontStyle.Regular);
+                tag.AutoSize = true;
+                flowLayoutPanel1.Controls.Add(tag);
+                tag.Show();
+            }
 
             Picture pic = book.GetPicture();
 

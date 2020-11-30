@@ -21,6 +21,9 @@ namespace BookRecommendationApp.Model
         
         public void SetNewName()
         {
+            if (FilePath == null)
+                return;
+
             string newName = Guid.NewGuid().ToString();
             string type = FilePath.Split('.').Last();
             FilePath = newName + '.' + type;

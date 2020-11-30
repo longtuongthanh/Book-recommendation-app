@@ -47,7 +47,8 @@ namespace BookRecommendationApp.Model
         }
         static public void Add(Picture pic)
         {
-
+            if (pic.FilePath == null || pic.Content == null)
+                return;
             string FilePath = pic.FilePath.Replace(".", ",");
             Firebase.Ins.Client.Child("Picture").Child(FilePath).PutAsync(JsonConvert.SerializeObject(pic.Content)).Wait();
         }
