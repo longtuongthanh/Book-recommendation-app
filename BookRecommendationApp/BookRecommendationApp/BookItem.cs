@@ -35,20 +35,27 @@ namespace BookRecommendationApp
             if (bookList.Contains(book.Name))
             {
                 button1.Text = "Xóa";
-                button1.MouseClick += (obj, arg) => Database.User.RemoveFromBookList(book);
+                button1.MouseClick += (obj, arg) => 
+                {
+                    Database.User.RemoveFromBookList(book);
+                    onAction?.Invoke(book, arg); ;
+                };
                 button1.BackColor = Color.Crimson;
             }
             else
             {
                 button1.Text = "Thêm";
-                button1.MouseClick += (obj, arg) => Database.User.AddToBookList(book);
+                button1.MouseClick += (obj, arg) =>
+                {
+                    Database.User.AddToBookList(book);
+                    onAction?.Invoke(book, arg);
+                };
                 button1.BackColor = Color.RoyalBlue;
             }
             #endregion
 
             picture.MouseClick += (obj, arg) => { onSelectItem?.Invoke(book, arg); };
             labelName.MouseClick += (obj, arg) => { onSelectItem?.Invoke(book, arg); };
-            button1.MouseClick += (obj, arg) => { onAction?.Invoke(book, arg); };
         }
     }
 }

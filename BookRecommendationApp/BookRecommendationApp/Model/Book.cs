@@ -50,6 +50,7 @@ namespace BookRecommendationApp.Model
         // score of the user who posted it.
         #endregion
         public Int32 Likes { get; set; }
+        public Int32 Dislike { get; set; }
         public Int32 Views { get; set; }
         public Int32 AddToList { get; set; }
         public Int32 InitialScore { get; set; }

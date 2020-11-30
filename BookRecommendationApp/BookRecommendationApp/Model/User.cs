@@ -22,7 +22,7 @@ namespace BookRecommendationApp.Model
         private Picture picture;
         public Picture GetPicture()
         {
-            if (picture != null)
+            if (picture != null && picture.GetImage() != null)
                 return picture;
 
             Picture pic = new Picture(PictureFile);
@@ -63,11 +63,13 @@ namespace BookRecommendationApp.Model
             if (!LikeListID.Contains(book.Name))
             {
                 LikeListID.Add(book.Name);
+                book.Likes++;
                 userChanged = true;
             }
             if (DislikeListID.Contains(book.Name))
             {
                 DislikeListID.Remove(book.Name);
+                book.Dislike--;
                 userChanged = true;
             }
             if (userChanged)
@@ -80,11 +82,13 @@ namespace BookRecommendationApp.Model
             if (!DislikeListID.Contains(book.Name))
             {
                 DislikeListID.Add(book.Name);
+                book.Dislike++;
                 userChanged = true;
             }
             if (LikeListID.Contains(book.Name))
             {
                 LikeListID.Remove(book.Name);
+                book.Likes--;
                 userChanged = true;
             }
             if (userChanged)
