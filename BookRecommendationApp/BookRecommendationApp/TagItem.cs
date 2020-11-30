@@ -12,12 +12,11 @@ namespace BookRecommendationApp
 {
     public partial class TagItem : Form
     {
+        public string tagName;
         public TagItem(string tagName)
         {
+            this.tagName = tagName;
             InitializeComponent();
-            label1.Text = tagName;
-
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -28,8 +27,8 @@ namespace BookRecommendationApp
 
         public void label1_Resize(object sender, EventArgs e)
         {
-            button1.Location = new Point(label1.Size.Width + 20, button1.Location.Y);
-            Size = new Size(button1.Location.X + button1.Width + 12 , button1.Size.Height + 12);
+            button1.Location = new Point(label1.Width + label1.Location.X + 20, button1.Location.Y);
+            Size = new Size(button1.Location.X + button1.Width + 20 , button1.Height + 12);
         }
     }
 }
