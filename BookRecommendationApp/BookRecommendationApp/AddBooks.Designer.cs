@@ -45,8 +45,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(370, 404);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(639, 438);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 25);
             this.button1.TabIndex = 1;
@@ -58,7 +59,7 @@
             // 
             this.picture.Image = global::BookRecommendationApp.Properties.Resources._130304;
             this.picture.Location = new System.Drawing.Point(17, 3);
-            this.picture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picture.Margin = new System.Windows.Forms.Padding(2);
             this.picture.Name = "picture";
             this.picture.Size = new System.Drawing.Size(101, 162);
             this.picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -68,8 +69,9 @@
             // 
             // panel2
             // 
-            this.panel2.AutoSize = true;
-            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.textBox3);
@@ -78,10 +80,11 @@
             this.panel2.Controls.Add(this.labelDesc);
             this.panel2.Controls.Add(this.labelAuthor);
             this.panel2.Controls.Add(this.labelName);
+            this.panel2.Controls.Add(this.richTextBox1);
             this.panel2.Location = new System.Drawing.Point(9, 39);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(447, 171);
+            this.panel2.Size = new System.Drawing.Size(716, 375);
             this.panel2.TabIndex = 6;
             // 
             // label1
@@ -99,9 +102,9 @@
             this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox3.Location = new System.Drawing.Point(178, 100);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(245, 20);
+            this.textBox3.Size = new System.Drawing.Size(514, 20);
             this.textBox3.TabIndex = 4;
             // 
             // textBox2
@@ -109,9 +112,9 @@
             this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.Location = new System.Drawing.Point(178, 52);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(245, 20);
+            this.textBox2.Size = new System.Drawing.Size(514, 20);
             this.textBox2.TabIndex = 3;
             // 
             // textBox1
@@ -119,9 +122,9 @@
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(178, 8);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(245, 20);
+            this.textBox1.Size = new System.Drawing.Size(514, 20);
             this.textBox1.TabIndex = 2;
             // 
             // labelDesc
@@ -156,13 +159,12 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(188, 180);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Location = new System.Drawing.Point(178, 155);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(245, 174);
+            this.richTextBox1.Size = new System.Drawing.Size(514, 201);
             this.richTextBox1.TabIndex = 7;
             this.richTextBox1.Text = "";
             // 
@@ -172,11 +174,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(736, 474);
-            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.picture);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AddBooks";
             this.Text = "AddBooks";
             this.Load += new System.EventHandler(this.AddBooks_Load);
@@ -184,7 +185,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
