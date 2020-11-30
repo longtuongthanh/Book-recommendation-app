@@ -69,6 +69,7 @@
             // panel2
             // 
             this.panel2.AutoSize = true;
+            this.panel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.textBox3);
@@ -80,7 +81,7 @@
             this.panel2.Location = new System.Drawing.Point(9, 39);
             this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(447, 340);
+            this.panel2.Size = new System.Drawing.Size(447, 171);
             this.panel2.TabIndex = 6;
             // 
             // label1
