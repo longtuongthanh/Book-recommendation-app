@@ -65,5 +65,6 @@ namespace BookRecommendationApp.Model
 
         public string Link { get; set; }
         public List<string> Tags { get; set; } = new List<string>();
+        public List<string> Comment { get; set; } = new List<string>();
     }
 }

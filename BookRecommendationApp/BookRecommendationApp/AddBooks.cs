@@ -64,14 +64,25 @@ namespace BookRecommendationApp
 
         }
 
+        Task toResumeFlowPanelLayout = null;
+        private async Task ResumeFlowPanelLayout(TagItem tagItem)
+        {
+            await Task.Delay(100);
+            flowLayoutPanel1.Controls.Add(tagItem);
+            toAdd.Remove(tagItem);
+        }
+        HashSet<TagItem> toAdd = new HashSet<TagItem>();
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
             TagItem tagItem = new TagItem(comboBox1.SelectedItem.ToString())
             { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             
             tagItem.FormBorderStyle = FormBorderStyle.None;
-            flowLayoutPanel1.Controls.Add(tagItem);
+            toAdd.Add(tagItem);
             tagItem.Show();
+            toResumeFlowPanelLayout?.Dispose();
+            toResumeFlowPanelLayout = ResumeFlowPanelLayout(tagItem);
+
             tagList.Add(comboBox1.SelectedItem.ToString());
             tagItem.SizeChanged += (obj, arg) => flowLayoutPanel1.Invalidate();
         }
