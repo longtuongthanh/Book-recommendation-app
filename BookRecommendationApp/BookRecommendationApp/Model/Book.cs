@@ -30,11 +30,13 @@ namespace BookRecommendationApp.Model
         }
         public bool IsValid()
         {
-            if (Name == null)
+            if (Name == null || Name == "")
                 return false;
-            if (Author == null)
+            if (Author == null || Author == "")
                 return false;
-            if (Description == null)
+            if (Description == null || Description == "")
+                return false;
+            if (Link == null || Link == "")
                 return false;
             return true;
         }
