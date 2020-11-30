@@ -323,6 +323,16 @@ namespace BookRecommendationApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Dislike_disabled_ {
+            get {
+                object obj = ResourceManager.GetObject("Dislike(disabled)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap doubt {
             get {
                 object obj = ResourceManager.GetObject("doubt", resourceCulture);
@@ -466,6 +476,16 @@ namespace BookRecommendationApp.Properties {
         internal static System.Drawing.Bitmap Like {
             get {
                 object obj = ResourceManager.GetObject("Like", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Like_disabled_ {
+            get {
+                object obj = ResourceManager.GetObject("Like(disabled)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

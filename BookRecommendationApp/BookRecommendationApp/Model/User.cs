@@ -11,7 +11,12 @@ namespace BookRecommendationApp.Model
     public partial class User
     {
         #region Functionality
-        public User() { BookListID = new List<string>(); }
+        public User()
+        {
+            BookListID = new List<string>();
+            LikeListID = new List<string>();
+            DislikeListID = new List<string>();
+        }
 
         [JsonIgnore]
         private Picture picture;
@@ -34,6 +39,7 @@ namespace BookRecommendationApp.Model
 
         public void AddToBookList(Book book)
         {
+            // TODO: change book
             if (!BookListID.Contains(book.Name))
             {
                 BookListID.Add(book.Name);
@@ -42,6 +48,7 @@ namespace BookRecommendationApp.Model
         }
         public void RemoveFromBookList(Book book)
         {
+            // TODO: change book
             if (BookListID.Contains(book.Name))
             {
                 BookListID.Remove(book.Name);
@@ -50,6 +57,8 @@ namespace BookRecommendationApp.Model
         }
         public void AddToLikeList(Book book)
         {
+            // TODO: change book
+
             bool userChanged = false;
             if (!LikeListID.Contains(book.Name))
             {
@@ -66,6 +75,7 @@ namespace BookRecommendationApp.Model
         }
         public void AddToDislikeListID(Book book)
         {
+            // TODO: change book
             bool userChanged = false;
             if (!DislikeListID.Contains(book.Name))
             {
@@ -82,6 +92,7 @@ namespace BookRecommendationApp.Model
         }
         public void RemoveFromLikeAndDislikeList(Book book)
         {
+            // TODO: change book
             bool userChanged = false;
             if (LikeListID.Contains(book.Name))
             {
