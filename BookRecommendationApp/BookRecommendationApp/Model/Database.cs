@@ -52,7 +52,8 @@ namespace BookRecommendationApp.Model
         }
         static public void Add(Picture pic)
         {
-            if (pic.FilePath == null || pic.Content == null)
+            if (pic.FilePath == null || pic.Content == null ||
+                pic.FilePath == "" || pic.Content == "")
             {
                 Console.WriteLine("ERROR: invalid picture");
                 return;
@@ -64,13 +65,14 @@ namespace BookRecommendationApp.Model
         static public void EditUser()
         {
             string uid = Firebase.Ins.Token.User.LocalId;
-            if (uid != null)
+            if (uid != null || uid == "")
                 Firebase.Ins.Client.Child("Users").Child(uid).PutAsync(User);
             else Console.WriteLine("ERROR: UID is null");
         }
         static public void Add(string tag)
         {
-            Firebase.Ins.Client.Child("Tags").PostAsync(tag);
+            if (tag != null && tag != "")
+                Firebase.Ins.Client.Child("Tags").PostAsync(tag);
             Tags.Add(tag);
         }
         static public string LoadPicture(string FilePath)
