@@ -34,6 +34,17 @@ namespace BookRecommendationApp
 
             Database.Add(book);
             Database.Add(pic);
+
+            MessageBox.Show("Thêm thành công");
+            clear();
+        }
+        void clear()
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            richTextBox1.Text = "";
+            this.picture.Image = global::BookRecommendationApp.Properties.Resources._130304;
         }
 
         private void picture_Click_1(object sender, EventArgs e)

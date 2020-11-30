@@ -107,5 +107,10 @@ namespace BookRecommendationApp
                 this.pictureBox2.Image = Properties.Resources.Dislike_disabled_;
             }
         }
+
+        private void panel3_SizeChanged(object sender, EventArgs e)
+        {
+            labelDesc.MaximumSize = new Size(panel3.Size.Width - 24, 0);
+        }
     }
 }

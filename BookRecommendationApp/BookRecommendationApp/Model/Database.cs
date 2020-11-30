@@ -44,7 +44,10 @@ namespace BookRecommendationApp.Model
         static public void Add(Book book)
         {
             if (book.IsValid())
+            {
                 Firebase.Ins.Client.Child("Books").Child(book.Name).PutAsync(JsonConvert.SerializeObject(book)).Wait();
+                Books.Add(book);
+            }
             else Console.WriteLine("ERROR: book name is null");
         }
         static public void Add(Picture pic)
@@ -68,6 +71,7 @@ namespace BookRecommendationApp.Model
         static public void Add(string tag)
         {
             Firebase.Ins.Client.Child("Tags").PostAsync(tag);
+            Tags.Add(tag);
         }
         static public string LoadPicture(string FilePath)
         {

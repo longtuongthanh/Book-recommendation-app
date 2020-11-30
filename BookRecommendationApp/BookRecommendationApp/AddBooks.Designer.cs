@@ -31,6 +31,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.picture = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -38,14 +39,13 @@
             this.labelAuthor = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picture)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(493, 497);
+            this.button1.Location = new System.Drawing.Point(841, 491);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(115, 31);
             this.button1.TabIndex = 1;
@@ -67,6 +67,8 @@
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.textBox3);
@@ -78,28 +80,43 @@
             this.panel2.Location = new System.Drawing.Point(12, 48);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(596, 418);
+            this.panel2.Size = new System.Drawing.Size(958, 418);
             this.panel2.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(152, 123);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 17);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Link";
             // 
             // textBox3
             // 
+            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox3.Location = new System.Drawing.Point(238, 123);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(325, 22);
+            this.textBox3.Size = new System.Drawing.Size(706, 22);
             this.textBox3.TabIndex = 4;
             // 
             // textBox2
             // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox2.Location = new System.Drawing.Point(238, 64);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(325, 22);
+            this.textBox2.Size = new System.Drawing.Size(706, 22);
             this.textBox2.TabIndex = 3;
             // 
             // textBox1
             // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(238, 10);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(325, 22);
+            this.textBox1.Size = new System.Drawing.Size(706, 22);
             this.textBox1.TabIndex = 2;
             // 
             // labelDesc
@@ -133,18 +150,9 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(250, 221);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(325, 213);
+            this.richTextBox1.Size = new System.Drawing.Size(706, 213);
             this.richTextBox1.TabIndex = 7;
             this.richTextBox1.Text = "";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(152, 123);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 17);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Link";
             // 
             // AddBooks
             // 

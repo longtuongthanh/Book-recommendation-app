@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picture = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.labelDesc = new System.Windows.Forms.Label();
             this.labelAuthor = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.picture = new System.Windows.Forms.PictureBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -54,19 +54,55 @@
             this.panel3.Controls.Add(this.labelName);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(962, 466);
+            this.panel3.Size = new System.Drawing.Size(1283, 574);
             this.panel3.TabIndex = 1;
+            this.panel3.SizeChanged += new System.EventHandler(this.panel3_SizeChanged);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::BookRecommendationApp.Properties.Resources.Dislike_disabled_;
+            this.pictureBox2.Location = new System.Drawing.Point(363, 130);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(36, 33);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::BookRecommendationApp.Properties.Resources.Like_disabled_;
+            this.pictureBox1.Location = new System.Drawing.Point(319, 130);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(36, 33);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // picture
+            // 
+            this.picture.Image = global::BookRecommendationApp.Properties.Resources._81mWACgHKxL;
+            this.picture.Location = new System.Drawing.Point(3, 2);
+            this.picture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.picture.Name = "picture";
+            this.picture.Size = new System.Drawing.Size(128, 161);
+            this.picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picture.TabIndex = 0;
+            this.picture.TabStop = false;
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(122, 106);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(163, 130);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 28);
+            this.button1.Size = new System.Drawing.Size(149, 34);
             this.button1.TabIndex = 2;
             this.button1.Text = "Thêm ";
             this.button1.UseVisualStyleBackColor = false;
@@ -77,22 +113,21 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelDesc.AutoSize = true;
-            this.labelDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDesc.Location = new System.Drawing.Point(8, 145);
-            this.labelDesc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelDesc.MaximumSize = new System.Drawing.Size(700, 0);
+            this.labelDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDesc.Location = new System.Drawing.Point(11, 178);
+            this.labelDesc.MaximumSize = new System.Drawing.Size(933, 0);
             this.labelDesc.Name = "labelDesc";
-            this.labelDesc.Size = new System.Drawing.Size(57, 15);
+            this.labelDesc.Size = new System.Drawing.Size(90, 25);
             this.labelDesc.TabIndex = 1;
             this.labelDesc.Text = "Nội dung";
             // 
             // labelAuthor
             // 
             this.labelAuthor.AutoSize = true;
-            this.labelAuthor.Location = new System.Drawing.Point(192, 51);
-            this.labelAuthor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAuthor.Location = new System.Drawing.Point(157, 75);
             this.labelAuthor.Name = "labelAuthor";
-            this.labelAuthor.Size = new System.Drawing.Size(43, 13);
+            this.labelAuthor.Size = new System.Drawing.Size(77, 25);
             this.labelAuthor.TabIndex = 1;
             this.labelAuthor.Text = "Tác giả";
             // 
@@ -100,54 +135,20 @@
             // 
             this.labelName.AutoSize = true;
             this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelName.Location = new System.Drawing.Point(116, 11);
-            this.labelName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelName.Location = new System.Drawing.Point(155, 14);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(61, 31);
+            this.labelName.Size = new System.Drawing.Size(76, 39);
             this.labelName.TabIndex = 1;
             this.labelName.Text = "Tên";
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::BookRecommendationApp.Properties.Resources.Dislike_disabled_;
-            this.pictureBox2.Location = new System.Drawing.Point(272, 106);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(27, 27);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::BookRecommendationApp.Properties.Resources.Like_disabled_;
-            this.pictureBox1.Location = new System.Drawing.Point(239, 106);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(27, 27);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // picture
-            // 
-            this.picture.Image = global::BookRecommendationApp.Properties.Resources._81mWACgHKxL;
-            this.picture.Location = new System.Drawing.Point(2, 2);
-            this.picture.Margin = new System.Windows.Forms.Padding(2);
-            this.picture.Name = "picture";
-            this.picture.Size = new System.Drawing.Size(96, 131);
-            this.picture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picture.TabIndex = 0;
-            this.picture.TabStop = false;
-            // 
             // BookInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(962, 466);
+            this.ClientSize = new System.Drawing.Size(1283, 574);
             this.Controls.Add(this.panel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "BookInfo";
             this.Text = "BookInfo";
             this.panel3.ResumeLayout(false);
