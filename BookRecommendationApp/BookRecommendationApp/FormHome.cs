@@ -18,18 +18,22 @@ namespace BookRecommendationApp
             InitializeComponent();
             load();
         }
-        void load ()
+        public void load ()
         {
             for (int i = 0; i<Database.Books.Count; i++)
             {
+
+
                 Panel pal = new Panel()
                 {
                     Width = 350,
-                    Height= 230
+                    Height = 230
                 };
-                
+
+
                 ApplyBookItem(pal, Database.Books[i]);
                 flowLayoutPanel1.Controls.Add(pal);
+                
             }    
         }
         public void ApplyBookItem(Panel panel, Book book)

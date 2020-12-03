@@ -12,11 +12,13 @@ using System.Windows.Forms;
 namespace BookRecommendationApp
 {
     public partial class AddBooks : Form
-    {        
+    {
+        List<string> tagList = new List<string>();
         public AddBooks()
         {
             InitializeComponent();
-            
+
+            comboBox1.DataSource = Database.Tags;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -26,11 +28,13 @@ namespace BookRecommendationApp
             book.Author = textBox2.Text;
             book.Link = textBox3.Text;
             book.Description = richTextBox1.Text;
-            
+            book.Tags = tagList;
             Picture pic = new Picture(picture.ImageLocation);
             pic.LoadContent();
             pic.SetNewName();
             book.PictureFile = pic.FilePath;
+
+           
 
             Database.Add(book);
             Database.Add(pic);
@@ -69,6 +73,29 @@ namespace BookRecommendationApp
         private void AddBooks_Load(object sender, EventArgs e)
         {
 
+        }
+
+        Task toResumeFlowPanelLayout = null;
+        private async Task ResumeFlowPanelLayout(TagItem tagItem)
+        {
+            await Task.Delay(100);
+            flowLayoutPanel1.Controls.Add(tagItem);
+            toAdd.Remove(tagItem);
+        }
+        HashSet<TagItem> toAdd = new HashSet<TagItem>();
+        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            TagItem tagItem = new TagItem(comboBox1.SelectedItem.ToString())
+            { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            
+            tagItem.FormBorderStyle = FormBorderStyle.None;
+            toAdd.Add(tagItem);
+            tagItem.Show();
+            toResumeFlowPanelLayout?.Dispose();
+            toResumeFlowPanelLayout = ResumeFlowPanelLayout(tagItem);
+
+            tagList.Add(comboBox1.SelectedItem.ToString());
+            tagItem.SizeChanged += (obj, arg) => flowLayoutPanel1.Invalidate();
         }
     }
 }
