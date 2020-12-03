@@ -18,6 +18,7 @@ namespace BookRecommendationApp
             this.tagName = tagName;
             InitializeComponent();
             label1.Text = tagName;
+            button1.Location = new Point(label1.Width + label1.Location.X, button1.Location.Y);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -26,11 +27,14 @@ namespace BookRecommendationApp
             this.Dispose();
         }
 
-        public void label1_Resize(object sender, EventArgs e)
+        public void label1_SizeChanged(object sender, EventArgs e)
         {
             button1.Location = new Point(label1.Width + label1.Location.X, button1.Location.Y);
-            PerformLayout();
-            //Size = new Size(button1.Location.X + button1.Width + 20 , button1.Height + 12);
+        }
+
+        private void TagItem_Resize(object sender, EventArgs e)
+        {
+            Size = PreferredSize;
         }
     }
 }

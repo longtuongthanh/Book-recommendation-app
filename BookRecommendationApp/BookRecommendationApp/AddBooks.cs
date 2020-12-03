@@ -19,6 +19,8 @@ namespace BookRecommendationApp
             InitializeComponent();
 
             comboBox1.DataSource = Database.Tags;
+
+            deltaDistance = flowLayoutPanel1.Bottom - panel1.Top;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -70,32 +72,40 @@ namespace BookRecommendationApp
             }
         }
 
-        private void AddBooks_Load(object sender, EventArgs e)
+        int deltaDistance;
+        void MaintainDistanceOfPanel1AndFlowPanel()
         {
-
+            panel1.Top = flowLayoutPanel1.Bottom - deltaDistance;
         }
 
-        Task toResumeFlowPanelLayout = null;
-        private async Task ResumeFlowPanelLayout(TagItem tagItem)
-        {
-            await Task.Delay(100);
-            flowLayoutPanel1.Controls.Add(tagItem);
-            toAdd.Remove(tagItem);
-        }
-        HashSet<TagItem> toAdd = new HashSet<TagItem>();
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            flowLayoutPanel1.PerformLayout();
             TagItem tagItem = new TagItem(comboBox1.SelectedItem.ToString())
             { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            
+
             tagItem.FormBorderStyle = FormBorderStyle.None;
-            toAdd.Add(tagItem);
+            flowLayoutPanel1.Controls.Add(tagItem);
+
+            // An empty panel with no content because flow layout panel
+            // just don't accept autosizing children.
+            Panel minSize = new Panel()
+            {
+                MinimumSize = new Size(0, 35),
+                Size = new Size(0, 35)
+            };
+            flowLayoutPanel1.Controls.Add(minSize);
+
             tagItem.Show();
-            toResumeFlowPanelLayout?.Dispose();
-            toResumeFlowPanelLayout = ResumeFlowPanelLayout(tagItem);
+            //flowLayoutPanel1.PerformLayout();
 
             tagList.Add(comboBox1.SelectedItem.ToString());
             tagItem.SizeChanged += (obj, arg) => flowLayoutPanel1.Invalidate();
+        }
+
+        private void flowLayoutPanel1_Resize(object sender, EventArgs e)
+        {
+            MaintainDistanceOfPanel1AndFlowPanel();
         }
     }
 }
