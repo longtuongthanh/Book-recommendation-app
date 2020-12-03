@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.butHome = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelLoad1 = new System.Windows.Forms.Panel();
             this.panelLoad = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panelLoad1.SuspendLayout();
@@ -65,6 +65,24 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(300, 700);
             this.panel2.TabIndex = 12;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(167)))), ((int)(((byte)(144)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(0, 310);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(300, 80);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "              THÊM SÁCH";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel5
             // 
@@ -91,7 +109,7 @@
             this.butHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.butHome.FlatAppearance.BorderSize = 0;
             this.butHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butHome.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butHome.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.butHome.ForeColor = System.Drawing.Color.White;
             this.butHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.butHome.Location = new System.Drawing.Point(0, 150);
@@ -99,7 +117,7 @@
             this.butHome.Name = "butHome";
             this.butHome.Size = new System.Drawing.Size(300, 80);
             this.butHome.TabIndex = 4;
-            this.butHome.Text = "          HOME";
+            this.butHome.Text = "              TRANG CHỦ";
             this.butHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.butHome.UseVisualStyleBackColor = false;
             this.butHome.Click += new System.EventHandler(this.butHome_Click);
@@ -109,7 +127,7 @@
             this.butMybooks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(167)))), ((int)(((byte)(144)))));
             this.butMybooks.FlatAppearance.BorderSize = 0;
             this.butMybooks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butMybooks.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butMybooks.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.butMybooks.ForeColor = System.Drawing.Color.White;
             this.butMybooks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.butMybooks.Location = new System.Drawing.Point(0, 230);
@@ -117,7 +135,7 @@
             this.butMybooks.Name = "butMybooks";
             this.butMybooks.Size = new System.Drawing.Size(300, 80);
             this.butMybooks.TabIndex = 4;
-            this.butMybooks.Text = "          MY BOOKS";
+            this.butMybooks.Text = "              SÁCH CỦA TÔI";
             this.butMybooks.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.butMybooks.UseVisualStyleBackColor = false;
             this.butMybooks.Click += new System.EventHandler(this.butMybooks_Click);
@@ -274,24 +292,6 @@
             this.panelLoad.Name = "panelLoad";
             this.panelLoad.Size = new System.Drawing.Size(1000, 630);
             this.panelLoad.TabIndex = 14;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(167)))), ((int)(((byte)(144)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(0, 310);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(300, 80);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "          ADD BOOKS";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainMenu
             // 
