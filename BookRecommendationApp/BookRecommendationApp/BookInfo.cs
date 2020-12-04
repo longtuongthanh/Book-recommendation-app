@@ -112,5 +112,12 @@ namespace BookRecommendationApp
         {
             labelDesc.MaximumSize = new Size(panel3.Size.Width - 24, 0);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormRP frmRP = new FormRP();
+            frmRP.Show();
+
+        }
     }
 }

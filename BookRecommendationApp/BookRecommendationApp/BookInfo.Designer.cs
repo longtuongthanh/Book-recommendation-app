@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picture = new System.Windows.Forms.PictureBox();
@@ -36,7 +37,6 @@
             this.labelDesc = new System.Windows.Forms.Label();
             this.labelAuthor = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -61,6 +61,19 @@
             this.panel3.Size = new System.Drawing.Size(1283, 574);
             this.panel3.TabIndex = 1;
             this.panel3.SizeChanged += new System.EventHandler(this.panel3_SizeChanged);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.DarkRed;
+            this.button2.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Location = new System.Drawing.Point(417, 130);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(131, 34);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Báo Cáo";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // pictureBox2
             // 
@@ -142,18 +155,6 @@
             this.labelName.Size = new System.Drawing.Size(76, 39);
             this.labelName.TabIndex = 1;
             this.labelName.Text = "Tên";
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.DarkRed;
-            this.button2.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(417, 130);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(131, 34);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Báo Cáo";
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // BookInfo
             // 
