@@ -166,6 +166,12 @@
     <Compile Include="BookInfo.Designer.cs">
       <DependentUpon>BookInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="cmt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="cmt.Designer.cs">
+      <DependentUpon>cmt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Firebase.cs" />
     <Compile Include="FormAcc.cs">
       <SubType>Form</SubType>
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BookInfo.resx">
       <DependentUpon>BookInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cmt.resx">
+      <DependentUpon>cmt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAcc.resx">
       <DependentUpon>FormAcc.cs</DependentUpon>

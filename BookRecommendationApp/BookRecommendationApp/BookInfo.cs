@@ -116,5 +116,24 @@ namespace BookRecommendationApp
                 this.pictureBox2.Image = Properties.Resources.Dislike_disabled_;
             }
         }
+
+
+        private void panel2_Resize(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            cmt c = new cmt();
+            c.hienthi(textBox1.Text);
+            flowLayoutPanel2.Controls.Add(c);
+        }
+
+        private void textBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            textBox1.Text = "";
+            textBox1.ForeColor = System.Drawing.SystemColors.InfoText;
+        }
     }
 }

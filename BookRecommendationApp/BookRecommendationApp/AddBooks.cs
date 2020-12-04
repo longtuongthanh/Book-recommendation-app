@@ -86,5 +86,10 @@ namespace BookRecommendationApp
             tagList.Add(comboBox1.SelectedItem.ToString());
             tagItem.SizeChanged += (obj, arg) => flowLayoutPanel1.Invalidate();
         }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
