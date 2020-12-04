@@ -11,5 +11,12 @@ namespace BookRecommendationApp.Model
         public Int32 LikeCoefficient { get; set; }
         public Int32 ViewCoefficient { get; set; }
         public Int32 AddToListCoefficient { get; set; }
+
+        public Int32 SearchAuthorMatchCoefficient { get; set; }
+        public Int32 SearchNameMatchCoefficient { get; set; }
+        public Int32 SearchTagMatchCoefficient { get; set; }
+        public Int32 SearchDescriptionMatchCoefficient { get; set; }
+
+        public Int32 SearchMaxResultAmount { get; set; }
     }
 }

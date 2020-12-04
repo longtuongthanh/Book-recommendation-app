@@ -40,6 +40,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.butLog = new System.Windows.Forms.Button();
             this.butRe = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -179,11 +180,28 @@
             this.butRe.UseVisualStyleBackColor = false;
             this.butRe.Click += new System.EventHandler(this.butRe_Click);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Malgun Gothic", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.button1.Location = new System.Drawing.Point(100, 460);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 36);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Exit";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 505);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.butRe);
             this.Controls.Add(this.butLog);
             this.Controls.Add(this.label2);
@@ -219,5 +237,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button butExit;
         private System.Windows.Forms.Button butRe;
+        private System.Windows.Forms.Button button1;
     }
 }
