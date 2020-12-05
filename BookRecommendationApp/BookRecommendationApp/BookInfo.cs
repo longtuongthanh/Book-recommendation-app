@@ -130,6 +130,14 @@ namespace BookRecommendationApp
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // Merge conflict
+
+            FormRP frmRP = new FormRP();
+            frmRP.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
             cmt c = new cmt();
             c.hienthi(textBox1.Text);
             flowLayoutPanel2.Controls.Add(c);
@@ -139,13 +147,6 @@ namespace BookRecommendationApp
         {
             textBox1.Text = "";
             textBox1.ForeColor = System.Drawing.SystemColors.InfoText;
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            FormRP frmRP = new FormRP();
-            frmRP.Show();
-
         }
     }
 }
