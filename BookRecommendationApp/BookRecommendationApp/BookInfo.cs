@@ -83,37 +83,37 @@ namespace BookRecommendationApp
             frmBI.Show();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void pictureBox2_Click(object sender, EventArgs e)
         {
             if (!Database.User.LikeListID.Contains(currentBook.Name))
             {
                 Database.User.AddToLikeList(currentBook);
 
-                this.pictureBox2.Image = Properties.Resources.Dislike_disabled_;
-                this.pictureBox1.Image = Properties.Resources.Like;
+                this.pictureBox1.Image = Properties.Resources.Dislike_disabled_;
+                this.pictureBox2.Image = Properties.Resources.Like;
             }
             else
             {
                 Database.User.RemoveFromLikeAndDislikeList(currentBook);
 
-                this.pictureBox1.Image = Properties.Resources.Like_disabled_;
+                this.pictureBox2.Image = Properties.Resources.Like_disabled_;
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (!Database.User.DislikeListID.Contains(currentBook.Name))
             {
-                Database.User.AddToLikeList(currentBook);
+                Database.User.AddToDislikeList(currentBook);
 
-                this.pictureBox2.Image = Properties.Resources.Dislike;
-                this.pictureBox1.Image = Properties.Resources.Like_disabled_;
+                this.pictureBox1.Image = Properties.Resources.Dislike;
+                this.pictureBox2.Image = Properties.Resources.Like_disabled_;
             }
             else
             {
                 Database.User.RemoveFromLikeAndDislikeList(currentBook);
 
-                this.pictureBox2.Image = Properties.Resources.Dislike_disabled_;
+                this.pictureBox1.Image = Properties.Resources.Dislike_disabled_;
             }
         }
 

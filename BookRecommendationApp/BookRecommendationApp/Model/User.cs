@@ -75,7 +75,7 @@ namespace BookRecommendationApp.Model
             if (userChanged)
                 Database.EditUser();
         }
-        public void AddToDislikeListID(Book book)
+        public void AddToDislikeList(Book book)
         {
             // TODO: change book
             bool userChanged = false;
