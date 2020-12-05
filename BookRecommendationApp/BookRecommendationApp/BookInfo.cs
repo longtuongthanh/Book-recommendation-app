@@ -140,5 +140,12 @@ namespace BookRecommendationApp
             textBox1.Text = "";
             textBox1.ForeColor = System.Drawing.SystemColors.InfoText;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormRP frmRP = new FormRP();
+            frmRP.Show();
+
+        }
     }
 }

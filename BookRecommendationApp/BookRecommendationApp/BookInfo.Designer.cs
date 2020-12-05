@@ -38,6 +38,9 @@
             this.labelDesc = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
             this.labelAuthor = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.picture = new System.Windows.Forms.PictureBox();
@@ -45,6 +48,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.labelDesc = new System.Windows.Forms.Label();
+            this.labelAuthor = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -65,6 +71,20 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1283, 574);
             this.panel3.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.DarkRed;
+            this.button2.Font = new System.Drawing.Font("Calibri", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Location = new System.Drawing.Point(404, 131);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(147, 36);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Báo Cáo";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel1
             // 
@@ -159,6 +179,18 @@
             this.labelName.Size = new System.Drawing.Size(76, 39);
             this.labelName.TabIndex = 1;
             this.labelName.Text = "Tên";
+            //
+            // pictureBox2
+            //
+            this.pictureBox2.Image = global::BookRecommendationApp.Properties.Resources.Dislike_disabled_;
+            this.pictureBox2.Location = new System.Drawing.Point(360, 130);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(37, 34);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // labelAuthor
             // 
@@ -170,14 +202,26 @@
             this.labelAuthor.TabIndex = 1;
             this.labelAuthor.Text = "Tác giả";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::BookRecommendationApp.Properties.Resources.Like_disabled_;
+            this.pictureBox1.Location = new System.Drawing.Point(317, 130);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(37, 34);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(148, 89);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(163, 98);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1117, 26);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1108, 26);
             this.flowLayoutPanel1.TabIndex = 4;
             // 
             // pictureBox2
@@ -220,7 +264,7 @@
             this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(148, 129);
+            this.button1.Location = new System.Drawing.Point(163, 130);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(149, 34);
@@ -228,6 +272,30 @@
             this.button1.Text = "Thêm ";
             this.button1.UseVisualStyleBackColor = false;
             // 
+            // labelDesc
+            // 
+            this.labelDesc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelDesc.AutoSize = true;
+            this.labelDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDesc.Location = new System.Drawing.Point(11, 178);
+            this.labelDesc.MaximumSize = new System.Drawing.Size(933, 0);
+            this.labelDesc.Name = "labelDesc";
+            this.labelDesc.Size = new System.Drawing.Size(90, 25);
+            this.labelDesc.TabIndex = 1;
+            this.labelDesc.Text = "Nội dung";
+            // 
+            // labelAuthor
+            // 
+            this.labelAuthor.AutoSize = true;
+            this.labelAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAuthor.Location = new System.Drawing.Point(160, 64);
+            this.labelAuthor.Name = "labelAuthor";
+            this.labelAuthor.Size = new System.Drawing.Size(77, 25);
+            this.labelAuthor.TabIndex = 1;
+            this.labelAuthor.Text = "Tác giả";
+            //
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.AutoScroll = true;
@@ -246,6 +314,16 @@
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(1247, 149);
             this.flowLayoutPanel3.TabIndex = 11;
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(155, 14);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(76, 39);
+            this.labelName.TabIndex = 1;
+            this.labelName.Text = "Tên";
             // 
             // button2
             // 

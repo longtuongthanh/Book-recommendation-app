@@ -203,6 +203,12 @@
     <Compile Include="FormMyBooks.Designer.cs">
       <DependentUpon>FormMyBooks.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRP.Designer.cs">
+      <DependentUpon>FormRP.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSearch.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMyBooks.resx">
       <DependentUpon>FormMyBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRP.resx">
+      <DependentUpon>FormRP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSearch.resx">
       <DependentUpon>FormSearch.cs</DependentUpon>
