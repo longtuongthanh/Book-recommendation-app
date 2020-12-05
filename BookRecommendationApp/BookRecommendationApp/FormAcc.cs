@@ -63,5 +63,6 @@ namespace BookRecommendationApp
             Database.EditUser();
             pictureBox1.ImageLocation = pictureBox2.ImageLocation;
         }
+        
     }
 }
