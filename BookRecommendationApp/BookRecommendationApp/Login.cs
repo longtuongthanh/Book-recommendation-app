@@ -99,5 +99,9 @@ namespace BookRecommendationApp
             "Không truy cập được hệ thống dữ liệu.\nXin thử lại sau ít phút.";
         #endregion
 
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

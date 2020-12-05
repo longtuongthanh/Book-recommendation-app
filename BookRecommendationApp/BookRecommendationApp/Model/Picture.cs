@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookRecommendationApp.Model
 {
+    // WARNING: DO NOT SERIALIZE & PUSH TO DATABASE
     public class Picture : IDisposable
     {
         private Image image = null;
@@ -17,6 +18,16 @@ namespace BookRecommendationApp.Model
 
         public string FilePath { get; set; }
         public string Content { get; set; }
+        
+        public void SetNewName()
+        {
+            if (FilePath == null)
+                return;
+
+            string newName = Guid.NewGuid().ToString();
+            string type = FilePath.Split('.').Last();
+            FilePath = newName + '.' + type;
+        }
 
         public Image GetImage()
         {
@@ -53,6 +64,7 @@ namespace BookRecommendationApp.Model
             }
         }
 
+        // Save to Computer
         public void SaveImage()
         {
             // if Content (provided outside) is not available
@@ -70,6 +82,23 @@ namespace BookRecommendationApp.Model
             }
         }
 
+        // Load from Computer
+        public void LoadContent()
+        {
+            // Invalid Picture object
+            if (FilePath == null)
+                return;
+
+            using (FileStream cin = File.OpenRead(FilePath))
+            {
+                byte[] data = new byte[cin.Length];
+                cin.Read(data, 0, data.Length);
+
+                Content = Encrypt(data);
+            }
+        }
+
+        #region Encrypt & Decrypt
         private const int offset = 0x40;
         private const int shift = 4;
         private static Encoding encoding = Encoding.UTF8;
@@ -109,6 +138,7 @@ namespace BookRecommendationApp.Model
 
             return data2;
         }
+        #endregion
 
         public void Dispose()
         {

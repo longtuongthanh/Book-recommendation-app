@@ -26,7 +26,9 @@ namespace BookRecommendationApp
         // TODO: export to file
         // TODO: encrypt said file
         private const string firebaseApiKey = "AIzaSyDu098TxwLgFJsfaenUPBfC1z9jyGGT2N8";
+        // Get at Setting->Cloud Messaging->Server Key
         private const string databaseURL = "https://fir-test-bd7d1.firebaseio.com";
+        // Get at Realtime Database
         private FirebaseAuthProvider authProvider =
             new FirebaseAuthProvider(new FirebaseConfig(firebaseApiKey));
         private FirebaseClient client = null;
@@ -63,6 +65,12 @@ namespace BookRecommendationApp
                 return false;
             }
             Token = authActionSignUp.Result;
+
+            Client.Child("Users").Child(Token.User.LocalId).PutAsync(new Model.User
+            {
+                BookListID = new List<string>(),
+                Score = 0
+            }).Wait();
             return true;
         }
 
@@ -134,11 +142,6 @@ namespace BookRecommendationApp
         }
         private bool LoadUser()
         {
-            Client.Child("Users").Child(Token.User.LocalId).PutAsync(new Model.User
-            {
-                BookListID = new List<string>(),
-                Score = 0
-            }).Wait();
             var task = Client.Child("Users").Child(Token.User.LocalId).OnceSingleAsync<Model.User>();
             var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
             taskEnd.Wait();
@@ -167,6 +170,7 @@ namespace BookRecommendationApp
         public string LoadPicture(string FilePath)
         {
             // Firebase doesn't accept '.'
+            if (FilePath == null) return null;
             FilePath = FilePath.Replace(".", ",");
 
             var task = Client.Child("Picture").Child(FilePath).OnceSingleAsync<string>();
