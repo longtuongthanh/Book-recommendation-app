@@ -122,12 +122,6 @@ namespace BookRecommendationApp
             labelDesc.MaximumSize = new Size(panel3.Size.Width - 24, 0);
         }
 
-
-        private void panel2_Resize(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             // Merge conflict

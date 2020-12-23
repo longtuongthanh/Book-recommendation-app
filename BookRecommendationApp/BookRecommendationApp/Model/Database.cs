@@ -43,41 +43,122 @@ namespace BookRecommendationApp.Model
         #region Functionality
         static public void Add(Book book)
         {
-            if (book.IsValid())
+            try
             {
-                Firebase.Ins.Client.Child("Books").Child(book.Name).PutAsync(JsonConvert.SerializeObject(book)).Wait();
-                Books.Add(book);
+                if (book.IsValid())
+                {
+                    Firebase.Ins.Client.Child("Books").Child(book.Name).PutAsync(JsonConvert.SerializeObject(book)).Wait();
+                    Books.Add(book);
+                }
+                else
+                {
+                    PostError("ERROR: book name is null \nAt Database::Add(book) with current Book: " +
+                        JsonConvert.SerializeObject(book));
+                }
             }
-            else Console.WriteLine("ERROR: book name is null");
+            catch (Exception e)
+            {
+                PostError(e);
+            }
         }
         static public void Add(Picture pic)
         {
-            if (pic.FilePath == null || pic.Content == null ||
-                pic.FilePath == "" || pic.Content == "")
+            try
             {
-                Console.WriteLine("ERROR: invalid picture");
-                return;
-            }
+                if (pic.FilePath == null || pic.Content == null ||
+                    pic.FilePath == "" || pic.Content == "")
+                {
+                    PostError("ERROR: invalid picture \nAt Database::Add(Picture) with current Picture: " +
+                        JsonConvert.SerializeObject(pic));
+                    return;
+                }
 
-            string FilePath = pic.FilePath.Replace(".", ",");
-            Firebase.Ins.Client.Child("Picture").Child(FilePath).PutAsync(JsonConvert.SerializeObject(pic.Content)).Wait();
+                string FilePath = pic.FilePath.Replace(".", ",");
+                Firebase.Ins.Client.Child("Picture").Child(FilePath).PutAsync(JsonConvert.SerializeObject(pic.Content)).Wait();
+            }
+            catch (Exception e)
+            {
+                PostError(e);
+            }
         }
         static public void EditUser()
         {
-            string uid = Firebase.Ins.Token.User.LocalId;
-            if (uid != null || uid == "")
-                Firebase.Ins.Client.Child("Users").Child(uid).PutAsync(User);
-            else Console.WriteLine("ERROR: UID is null");
+            try
+            {
+                string uid = Firebase.Ins.Token.User.LocalId;
+                if (uid != null || uid == "")
+                    Firebase.Ins.Client.Child("Users").Child(uid).PutAsync(User);
+                else
+                {
+                    PostError("ERROR: UID is null \nAt Database::EditUser() with current User: " + 
+                        JsonConvert.SerializeObject(User));
+                }
+            }
+            catch (Exception e)
+            {
+                PostError(e);
+            }
         }
         static public void Add(string tag)
         {
-            if (tag != null && tag != "")
-                Firebase.Ins.Client.Child("Tags").PostAsync(tag);
-            Tags.Add(tag);
+            try
+            {
+                if (tag != null && tag != "")
+                    Firebase.Ins.Client.Child("Tags").PostAsync(tag);
+                Tags.Add(tag);
+            }
+            catch (Exception e)
+            {
+                PostError(e);
+            }
         }
         static public string LoadPicture(string FilePath)
         {
-            return Firebase.Ins.LoadPicture(FilePath);
+            try
+            {
+                return Firebase.Ins.LoadPicture(FilePath);
+            }
+            catch (Exception e)
+            {
+                PostError(e);
+                return null;
+            }
+        }
+        static public void PostError(Exception e)
+        {
+            try
+            {
+                if (e != null)
+                {
+                    string uid = Firebase.Ins.Token.User.LocalId;
+                    if (uid != null || uid == "")
+                        Firebase.Ins.Client.Child("Error").Child(uid + DateTime.Now.ToString()).PutAsync(e.ToString());
+                    else Console.WriteLine("ERROR: UID is null");
+                }
+            }
+            catch (Exception e2)
+            {
+                Console.WriteLine("ERROR: cannot post error to database. Current error: " + 
+                    e2.ToString() + "\nTarget Error: " + e.ToString());
+            }
+        }
+        static public void PostError(string e)
+        {
+            try
+            {
+                if (e != null)
+                {
+                    string uid = Firebase.Ins.Token.User.LocalId;
+                    if (uid != null || uid == "")
+                        Firebase.Ins.Client.Child("Error").Child(uid + DateTime.Now.ToString()).PutAsync(e);
+                    else Console.WriteLine("ERROR: UID is null");
+                }
+            }
+            catch (Exception e2)
+            {
+                Console.WriteLine("ERROR: cannot post error to database. Current error: " +
+                    e2.ToString() + "\nTarget Error: " + e);
+            }
         }
         #endregion
     }

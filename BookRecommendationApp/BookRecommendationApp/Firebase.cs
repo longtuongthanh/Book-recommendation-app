@@ -113,29 +113,58 @@ namespace BookRecommendationApp
         }
 
         #region Tasks
+        public event Action<Book> onBookUpdate;
+        private IDisposable subscribeBook;
         private bool LoadBook()
         {
-            var task = Client.Child("Books").OnceAsync<Book>();
+            var query = Client.Child("Books");
+
+            var task = query.OnceAsync<Book>();
             var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
             taskEnd.Wait();
             if (taskEnd.Result == task)
             {
                 try { task.Wait(); } catch { return false; }
                 var taskResult = task.Result;
+
                 Database.Books = taskResult.Select(item => item.Object).ToList();
+
+                subscribeBook = query.AsObservable<Book>().Subscribe(ev =>
+                {
+                    Book book = ev.Object;
+                    Database.Books.RemoveAll(item => book.Name == item.Name);
+                    Database.Books.Add(book);
+
+                    onBookUpdate.Invoke(book);
+                });
+
                 return !task.IsFaulted;
             }
             else return false;
         }
+        public event Action onTagUpdate;
+        private IDisposable subscribeTag;
         private bool LoadTags()
         {
-            var task = Client.Child("Tags").OnceSingleAsync<List<string>>();
+            var query = Client.Child("Tags");
+
+            var task = query.OnceSingleAsync<List<string>>();
             var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
             taskEnd.Wait();
             if (taskEnd.Result == task)
             {
                 try { task.Wait(); } catch { return false; }
                 Database.Tags = task.Result;
+
+                subscribeTag = query.AsObservable<string>().Subscribe(ev => 
+                {
+                    string tag = ev.Object;
+                    Database.Tags.RemoveAll(item => item == tag);
+                    Database.Tags.Add(tag);
+
+                    onTagUpdate.Invoke();
+                });
+
                 return !task.IsFaulted;
             }
             else return false;
@@ -192,7 +221,11 @@ namespace BookRecommendationApp
             while (true)
             {
                 var task = Token.GetFreshAuthAsync();
-                try { task.Wait(); } catch { continue; }
+                try { task.Wait(); } catch
+                {
+                    Console.WriteLine("WARNING: cannot refresh token");
+                    continue;
+                }
                 Token = task.Result;
                 await Task.Delay(Token.ExpiresIn);
             }

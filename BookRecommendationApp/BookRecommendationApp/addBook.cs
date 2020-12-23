@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BookRecommendationApp.Model;
 
 namespace BookRecommendationApp
 {
@@ -66,9 +67,10 @@ namespace BookRecommendationApp
                     picture.ImageLocation = imageLocations;
                 }
             }
-            catch (Exception)
+            catch (Exception er)
             {
                 MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Database.PostError(er);
             }
         }
 

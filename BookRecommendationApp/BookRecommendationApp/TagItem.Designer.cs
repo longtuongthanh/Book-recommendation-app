@@ -35,10 +35,10 @@
             // button1
             // 
             this.button1.Image = global::BookRecommendationApp.Properties.Resources.close;
-            this.button1.Location = new System.Drawing.Point(177, 11);
+            this.button1.Location = new System.Drawing.Point(186, 11);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(28, 19);
+            this.button1.Size = new System.Drawing.Size(20, 20);
             this.button1.TabIndex = 3;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -61,7 +61,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(215, 39);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);

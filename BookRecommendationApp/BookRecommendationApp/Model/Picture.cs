@@ -57,7 +57,7 @@ namespace BookRecommendationApp.Model
                 catch (Exception e) {
                     if (e is OutOfMemoryException)
                         throw e;
-
+                    Database.PostError(e);
                     // Outside, try to get hash from database
                     return null;
                 }

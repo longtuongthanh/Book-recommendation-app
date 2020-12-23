@@ -66,9 +66,10 @@ namespace BookRecommendationApp
                     picture.ImageLocation = imageLocations;
                 }
             }
-            catch (Exception)
+            catch (Exception er)
             {
                 MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Database.PostError(er);
             }
         }
 
