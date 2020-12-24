@@ -81,6 +81,9 @@ namespace BookRecommendationApp
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            // If the tag is already in the tagList, return.
+            if (tagList.Any(item => item == comboBox1.SelectedItem.ToString()))
+                return;
             flowLayoutPanel1.PerformLayout();
             TagItem tagItem = new TagItem(comboBox1.SelectedItem.ToString())
             { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };

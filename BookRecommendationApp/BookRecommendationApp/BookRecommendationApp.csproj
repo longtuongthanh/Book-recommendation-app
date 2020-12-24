@@ -242,6 +242,7 @@
     <Compile Include="TagItem.Designer.cs">
       <DependentUpon>TagItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Util.cs" />
     <EmbeddedResource Include="addBook.resx">
       <DependentUpon>addBook.cs</DependentUpon>
     </EmbeddedResource>

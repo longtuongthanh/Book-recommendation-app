@@ -43,6 +43,7 @@ namespace BookRecommendationApp.Model
         #region Functionality
         static public void Add(Book book)
         {
+            Util.StartLoadingForCursor();
             try
             {
                 if (book.IsValid())
@@ -60,9 +61,11 @@ namespace BookRecommendationApp.Model
             {
                 PostError(e);
             }
+            Util.StopLoadingForCursor();
         }
         static public void Add(Picture pic)
         {
+            Util.StartLoadingForCursor();
             try
             {
                 if (pic.FilePath == null || pic.Content == null ||
@@ -80,9 +83,11 @@ namespace BookRecommendationApp.Model
             {
                 PostError(e);
             }
+            Util.StopLoadingForCursor();
         }
         static public void EditUser()
         {
+            Util.StartLoadingForCursor();
             try
             {
                 string uid = Firebase.Ins.Token.User.LocalId;
@@ -98,9 +103,11 @@ namespace BookRecommendationApp.Model
             {
                 PostError(e);
             }
+            Util.StopLoadingForCursor();
         }
         static public void Add(string tag)
         {
+            Util.StartLoadingForCursor();
             try
             {
                 if (tag != null && tag != "")
@@ -111,21 +118,27 @@ namespace BookRecommendationApp.Model
             {
                 PostError(e);
             }
+            Util.StopLoadingForCursor();
         }
         static public string LoadPicture(string FilePath)
         {
+            string result;
+            Util.StartLoadingForCursor();
             try
             {
-                return Firebase.Ins.LoadPicture(FilePath);
+                result = Firebase.Ins.LoadPicture(FilePath);
             }
             catch (Exception e)
             {
                 PostError(e);
-                return null;
+                result = null;
             }
+            Util.StopLoadingForCursor();
+            return result;
         }
         static public void PostError(Exception e)
         {
+            Util.StartLoadingForCursor();
             try
             {
                 if (e != null)
@@ -141,9 +154,11 @@ namespace BookRecommendationApp.Model
                 Console.WriteLine("ERROR: cannot post error to database. Current error: " + 
                     e2.ToString() + "\nTarget Error: " + e.ToString());
             }
+            Util.StopLoadingForCursor();
         }
         static public void PostError(string e)
         {
+            Util.StartLoadingForCursor();
             try
             {
                 if (e != null)
@@ -159,6 +174,7 @@ namespace BookRecommendationApp.Model
                 Console.WriteLine("ERROR: cannot post error to database. Current error: " +
                     e2.ToString() + "\nTarget Error: " + e);
             }
+            Util.StopLoadingForCursor();
         }
         #endregion
     }

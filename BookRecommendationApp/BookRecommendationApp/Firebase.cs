@@ -55,6 +55,7 @@ namespace BookRecommendationApp
         #region LoadData
         public bool SignUp(string email, string password)
         {
+            Util.StartLoadingForCursor();
             var authActionSignUp = authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
             bool error = false;
             try { authActionSignUp.Wait(TimeOut); }
@@ -62,6 +63,7 @@ namespace BookRecommendationApp
             if (authActionSignUp.IsFaulted || error || !authActionSignUp.IsCompleted)
             {
                 //MessageBox.Show(SignUpFailedPrompt);
+                Util.StopLoadingForCursor();
                 return false;
             }
             Token = authActionSignUp.Result;
@@ -71,17 +73,20 @@ namespace BookRecommendationApp
                 BookListID = new List<string>(),
                 Score = 0
             }).Wait();
+            Util.StopLoadingForCursor();
             return true;
         }
 
         public bool SignIn(string email, string password)
         {
+            Util.StartLoadingForCursor();
             var authActionSignIn = authProvider.SignInWithEmailAndPasswordAsync(email, password);
             bool error = false;
             try { authActionSignIn.Wait(TimeOut); }
             catch { error = true; }
             if (authActionSignIn.IsFaulted || error || !authActionSignIn.IsCompleted)
             {
+                Util.StopLoadingForCursor();
                 return false;
                 /*
                 if (triedOnce)
@@ -109,6 +114,7 @@ namespace BookRecommendationApp
                 //*/
             }
             Token = authActionSignIn.Result;
+            Util.StopLoadingForCursor();
             return true;
         }
 
@@ -234,6 +240,7 @@ namespace BookRecommendationApp
 
         public bool LoadFirebase(string username = null, string password = null)
         {
+            Util.StartLoadingForCursor();
             bool result = true;
             if (Client == null)
                 result = SignIn(username, password);
@@ -249,6 +256,7 @@ namespace BookRecommendationApp
             if (result == false)
                 MessageBox.Show(LoadDataFromFirebaseFailed);
             //*/
+            Util.StopLoadingForCursor();
             return result;
         }
         #endregion
