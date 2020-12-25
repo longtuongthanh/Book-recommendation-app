@@ -13,7 +13,9 @@ namespace BookRecommendationApp
 {
     public partial class BookInfo : Form
     {
+        
         private Book currentBook;
+        List<Comment> cmtList = new List<Comment>();
         public BookInfo(Book book)
         {
             InitializeComponent();
@@ -32,7 +34,15 @@ namespace BookRecommendationApp
                 flowLayoutPanel1.Controls.Add(tag);
                 tag.Show();
             }
+            cmtList = book.Comment;
+            foreach (var item in book.Comment)
+            {
+                cmt c = new cmt();
+                c.hienthi(item);
+                flowLayoutPanel2.Controls.Add(c);
 
+
+            }  
             Picture pic = book.GetPicture();
 
             if (pic.GetImage() != null)
@@ -125,15 +135,27 @@ namespace BookRecommendationApp
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Comment cmt = new Comment { Content = textBox1.Text, Uid = Database.User.Uid };
+            cmtList.Add( cmt);
+
             cmt c = new cmt();
-            c.hienthi(textBox1.Text);
+            c.hienthi(cmt);
             flowLayoutPanel2.Controls.Add(c);
+
+            textBox1.Text = "";
+            textBox1.ForeColor = System.Drawing.SystemColors.InfoText;
+
+            currentBook.Comment = cmtList;
+            Database.Edit(currentBook);
         }
+        
 
         private void textBox1_MouseClick(object sender, MouseEventArgs e)
         {
             textBox1.Text = "";
             textBox1.ForeColor = System.Drawing.SystemColors.InfoText;
         }
+
+      
     }
 }

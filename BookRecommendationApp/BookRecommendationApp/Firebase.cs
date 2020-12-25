@@ -69,7 +69,8 @@ namespace BookRecommendationApp
             Client.Child("Users").Child(Token.User.LocalId).PutAsync(new Model.User
             {
                 BookListID = new List<string>(),
-                Score = 0
+                Score = 0,
+                Uid = Token.User.LocalId
             }).Wait();
             return true;
         }
@@ -153,6 +154,20 @@ namespace BookRecommendationApp
             }
             else return false;
         }
+        private bool LoadUsers()
+        {
+            var task = Client.Child("Users").OnceAsync<Model.User>();
+            var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
+            taskEnd.Wait();
+            if (taskEnd.Result == task)
+            {
+                try { task.Wait(); } catch { return false; }
+                var taskResult = task.Result;
+                Database.Users = taskResult.Select(item => item.Object).ToList();
+                return !task.IsFaulted;
+            }
+            else return false;
+        }
         private bool LoadSetting()
         {
             var task = Client.Child("Setting").OnceSingleAsync<Setting>();
@@ -211,6 +226,7 @@ namespace BookRecommendationApp
             result &= LoadBook();
             result &= LoadTags();
             result &= LoadUser();
+            result &= LoadUsers();
             result &= LoadSetting();
             /*
             if (result == false)

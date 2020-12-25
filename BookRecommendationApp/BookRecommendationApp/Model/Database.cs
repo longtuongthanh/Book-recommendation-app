@@ -17,6 +17,7 @@ namespace BookRecommendationApp.Model
         private static Setting s_setting;
         private static List<string> s_tags;
         private static User s_user;
+        private static List<User> s_users;
 
         static public List<Book> Books
         {
@@ -33,6 +34,11 @@ namespace BookRecommendationApp.Model
             get => s_user;
             set => s_user = value;
         }
+        static public List<User> Users
+        {
+            get => s_users;
+            set => s_users = value;
+        }
         static public Setting Setting
         {
             get => s_setting;
@@ -46,6 +52,10 @@ namespace BookRecommendationApp.Model
             if (book.IsValid())
                 Firebase.Ins.Client.Child("Books").Child(book.Name).PutAsync(JsonConvert.SerializeObject(book)).Wait();
             else Console.WriteLine("ERROR: book name is null");
+        }
+        static public void Edit(Book book)
+        {
+            Add(book);
         }
         static public void Add(Picture pic)
         {
@@ -61,6 +71,7 @@ namespace BookRecommendationApp.Model
         static public void EditUser()
         {
             string uid = Firebase.Ins.Token.User.LocalId;
+            User.Uid = uid;
             if (uid != null)
                 Firebase.Ins.Client.Child("Users").Child(uid).PutAsync(User);
             else Console.WriteLine("ERROR: UID is null");

@@ -223,6 +223,7 @@
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Book.cs" />
+    <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Database.cs" />
     <Compile Include="Model\Picture.cs" />
     <Compile Include="Model\Setting.cs" />

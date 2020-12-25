@@ -124,6 +124,9 @@ namespace BookRecommendationApp.Model
         // fake book declaration, invalid tags, toxic comment, 
         // and others.
         public string PictureFile { get; set; }
+
+        public string Nickname { get; set; }
+        public string Uid { get; set; }
         #endregion
     }
 }
