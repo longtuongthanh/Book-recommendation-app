@@ -98,6 +98,11 @@ namespace BookRecommendationApp
                     flowLayoutPanel1.Controls.Add(pal);
                 }
         }
+        public void ClearSearchResult()
+        {
+            flowLayoutPanel1.Controls.Clear();
+        }
+
         public void ApplyBookItem(Panel panel, Book book)
         {
 
@@ -108,17 +113,17 @@ namespace BookRecommendationApp
             panel.Controls.Add(frmBI);
             frmBI.Show();
         }
-
+        Action<Book> updateOnDBBookChange;
         private void frmSearch_Load(object sender, EventArgs e)
         {
-            /*
-            BookItem frmBI4 = new BookItem(
-                Database.Books.FirstOrDefault(), SelectedBook)
-            { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
-            frmBI4.FormBorderStyle = FormBorderStyle.None;
-            panel1.Controls.Add(frmBI4);
-            frmBI4.Show();
-            //*/
+            // No errors in case updateOnDBBookChange is null
+            Firebase.Ins.onBookUpdate -= updateOnDBBookChange;
+            updateOnDBBookChange = (book) =>
+            {
+                ClearSearchResult();
+                GetSearchResult();
+            };
+            Firebase.Ins.onBookUpdate += updateOnDBBookChange;
         }
         private void SelectedBook(object sender, EventArgs e)
         {
@@ -148,6 +153,11 @@ namespace BookRecommendationApp
             frmBI.FormBorderStyle = FormBorderStyle.None;
             panelLoad.Controls.Add(frmBI);
             frmBI.Show();
+        }
+
+        private void frmSearch_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Firebase.Ins.onBookUpdate -= updateOnDBBookChange;
         }
     }
 }

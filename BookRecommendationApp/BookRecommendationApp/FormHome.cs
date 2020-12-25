@@ -16,9 +16,9 @@ namespace BookRecommendationApp
         public FormHome()
         {
             InitializeComponent();
-            load();
+            LoadBooks();
         }
-        public void load ()
+        public void LoadBooks ()
         {
             for (int i = 0; i<Database.Books.Count; i++)
             {
@@ -35,6 +35,10 @@ namespace BookRecommendationApp
                 flowLayoutPanel1.Controls.Add(pal);
                 
             }    
+        }
+        public void ClearBooks()
+        {
+            flowLayoutPanel1.Controls.Clear();
         }
         public void ApplyBookItem(Panel panel, Book book)
         {

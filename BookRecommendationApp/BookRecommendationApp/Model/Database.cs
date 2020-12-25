@@ -50,6 +50,7 @@ namespace BookRecommendationApp.Model
                 {
                     Firebase.Ins.Client.Child("Books").Child(book.Name).PutAsync(JsonConvert.SerializeObject(book)).Wait();
                     Books.Add(book);
+                    UserActive();
                 }
                 else
                 {
@@ -85,14 +86,36 @@ namespace BookRecommendationApp.Model
             }
             Util.StopLoadingForCursor();
         }
-        static public void EditUser()
+        static public void UserActive()
         {
             Util.StartLoadingForCursor();
             try
             {
                 string uid = Firebase.Ins.Token.User.LocalId;
                 if (uid != null || uid == "")
-                    Firebase.Ins.Client.Child("Users").Child(uid).PutAsync(User);
+                    Firebase.Ins.Client.Child("Users").Child(uid).Child("lastActive").PutAsync(DateTime.Now).Wait();
+                else
+                {
+                    PostError("ERROR: UID is null \nAt Database::EditUser() with current User: " +
+                        JsonConvert.SerializeObject(User));
+                }
+            }
+            catch (Exception e)
+            {
+                PostError(e);
+            }
+            Util.StopLoadingForCursor();
+        }
+
+        static public void EditUser()
+        {
+            Util.StartLoadingForCursor();
+            try
+            {
+                string uid = Firebase.Ins.Token.User.LocalId;
+                User.lastActive = DateTime.Now;
+                if (uid != null || uid == "")
+                    Firebase.Ins.Client.Child("Users").Child(uid).PutAsync(User).Wait();
                 else
                 {
                     PostError("ERROR: UID is null \nAt Database::EditUser() with current User: " + 

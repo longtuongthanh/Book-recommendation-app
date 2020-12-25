@@ -224,8 +224,11 @@ namespace BookRecommendationApp
         #region Refresh Token
         public async Task RefreshToken()
         {
+            // Non-blocking thread, so infinite loop is ok
             while (true)
             {
+                // Yield control if Token not expired.
+                await Task.Delay(Token.ExpiresIn);
                 var task = Token.GetFreshAuthAsync();
                 try { task.Wait(); } catch
                 {
@@ -233,7 +236,6 @@ namespace BookRecommendationApp
                     continue;
                 }
                 Token = task.Result;
-                await Task.Delay(Token.ExpiresIn);
             }
         }
         #endregion
@@ -256,6 +258,9 @@ namespace BookRecommendationApp
             if (result == false)
                 MessageBox.Show(LoadDataFromFirebaseFailed);
             //*/
+
+            Database.UserActive();
+
             Util.StopLoadingForCursor();
             return result;
         }
