@@ -16,6 +16,7 @@ namespace BookRecommendationApp.Model
         public Int32 SearchNameMatchCoefficient { get; set; }
         public Int32 SearchTagMatchCoefficient { get; set; }
         public Int32 SearchDescriptionMatchCoefficient { get; set; }
+        public Int32 SearchNotMatchPenalty { get; set; }
 
         public Int32 SearchMaxResultAmount { get; set; }
     }

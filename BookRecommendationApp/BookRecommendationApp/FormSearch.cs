@@ -30,7 +30,22 @@ namespace BookRecommendationApp
         }
         int MatchScore(Book book, string match)
         {
-            string[] matchItems = match.Split(' ');
+            List<string> matchItem = new List<string>();
+            string[] strSplit = match.Split('"');
+            for (int i = 0; i < strSplit.Count(); i++)
+            {
+                if (strSplit[i] == "")
+                    continue;
+                if (i % 2 == 1)
+                    matchItem.Add(strSplit[i]);
+                else
+                {
+                    string[] wordSplit = strSplit[i].Split(' ');
+                    foreach (string word in wordSplit)
+                        if (word != "")
+                            matchItem.Add(word);
+                }
+            }
 
             string[] authorWords = book.Author.Split(' ');
             string[] descWords = book.Description.Split(' ');
@@ -42,9 +57,9 @@ namespace BookRecommendationApp
 
             Int32 score = 0;
 
-            foreach(string word in matchItems)
+            foreach(string word in matchItem)
             {
-                Int32 wordScore = 0;
+                Int32 wordScore = Database.Setting.SearchNotMatchPenalty;
 
                 foreach (string authorWord in authorWords)
                     if (authorWord.ToLower() == word.ToLower())
