@@ -79,5 +79,10 @@ namespace BookRecommendationApp
             panelLoad.Controls.Add(frmBI);
             frmBI.Show();
         }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

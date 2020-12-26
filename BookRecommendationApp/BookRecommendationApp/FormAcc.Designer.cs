@@ -30,7 +30,6 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.panel15 = new System.Windows.Forms.Panel();
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -43,6 +42,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -50,34 +50,25 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel10.SuspendLayout();
-            this.panel13.SuspendLayout();
-            this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,7 +85,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.listView1);
+            this.tabPage1.Controls.Add(this.flowLayoutPanel1);
             this.tabPage1.Controls.Add(this.panel15);
             this.tabPage1.Controls.Add(this.panel4);
             this.tabPage1.Controls.Add(this.panel2);
@@ -107,15 +98,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Thông tin cá nhân";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(8, 325);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(978, 252);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // panel15
             // 
@@ -225,6 +207,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên tài khoản:";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::BookRecommendationApp.Properties.Resources.user;
+            this.pictureBox1.Location = new System.Drawing.Point(7, 7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(169, 207);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.button2);
@@ -232,9 +224,6 @@
             this.tabPage2.Controls.Add(this.panel5);
             this.tabPage2.Controls.Add(this.panel6);
             this.tabPage2.Controls.Add(this.panel10);
-            this.tabPage2.Controls.Add(this.button6);
-            this.tabPage2.Controls.Add(this.panel13);
-            this.tabPage2.Controls.Add(this.panel12);
             this.tabPage2.Controls.Add(this.button4);
             this.tabPage2.Controls.Add(this.pictureBox2);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
@@ -257,7 +246,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(630, 346);
+            this.button1.Location = new System.Drawing.Point(630, 193);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(127, 48);
             this.button1.TabIndex = 24;
@@ -269,7 +258,7 @@
             // 
             this.panel5.Controls.Add(this.textBox5);
             this.panel5.Controls.Add(this.label5);
-            this.panel5.Location = new System.Drawing.Point(216, 288);
+            this.panel5.Location = new System.Drawing.Point(216, 135);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(602, 52);
             this.panel5.TabIndex = 23;
@@ -288,26 +277,18 @@
             this.label5.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(3, 15);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(102, 29);
+            this.label5.Size = new System.Drawing.Size(115, 29);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Nhập lại:";
+            this.label5.Text = "Ngày sinh:";
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.textBox6);
+            this.panel6.Controls.Add(this.comboBox1);
             this.panel6.Controls.Add(this.label6);
-            this.panel6.Location = new System.Drawing.Point(216, 234);
+            this.panel6.Location = new System.Drawing.Point(216, 81);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(602, 52);
             this.panel6.TabIndex = 22;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(171, 8);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(370, 36);
-            this.textBox6.TabIndex = 1;
             // 
             // label6
             // 
@@ -315,15 +296,15 @@
             this.label6.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(3, 15);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(152, 29);
+            this.label6.Size = new System.Drawing.Size(104, 29);
             this.label6.TabIndex = 0;
-            this.label6.Text = "Mật khẩu mới";
+            this.label6.Text = "Giới tính:";
             // 
             // panel10
             // 
             this.panel10.Controls.Add(this.textBox10);
             this.panel10.Controls.Add(this.label10);
-            this.panel10.Location = new System.Drawing.Point(216, 176);
+            this.panel10.Location = new System.Drawing.Point(216, 23);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(602, 52);
             this.panel10.TabIndex = 21;
@@ -342,72 +323,9 @@
             this.label10.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(3, 15);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(114, 29);
+            this.label10.Size = new System.Drawing.Size(135, 29);
             this.label10.TabIndex = 0;
-            this.label10.Text = "Mật khẩu:";
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(630, 122);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(127, 48);
-            this.button6.TabIndex = 20;
-            this.button6.Text = "Cập nhật";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.textBox13);
-            this.panel13.Controls.Add(this.label13);
-            this.panel13.Location = new System.Drawing.Point(216, 64);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(602, 52);
-            this.panel13.TabIndex = 19;
-            // 
-            // textBox13
-            // 
-            this.textBox13.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox13.Location = new System.Drawing.Point(171, 8);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(370, 36);
-            this.textBox13.TabIndex = 1;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(3, 15);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(118, 29);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Email mới:";
-            // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.textBox12);
-            this.panel12.Controls.Add(this.label12);
-            this.panel12.Location = new System.Drawing.Point(216, 6);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(602, 52);
-            this.panel12.TabIndex = 18;
-            // 
-            // textBox12
-            // 
-            this.textBox12.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.Location = new System.Drawing.Point(171, 8);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(370, 36);
-            this.textBox12.TabIndex = 1;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(3, 15);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(74, 29);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Email:";
+            this.label10.Text = "Tên hiển thị:";
             // 
             // button4
             // 
@@ -419,16 +337,6 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::BookRecommendationApp.Properties.Resources.user;
-            this.pictureBox1.Location = new System.Drawing.Point(7, 7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(169, 207);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::BookRecommendationApp.Properties.Resources.user;
@@ -438,6 +346,26 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(7, 306);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(977, 289);
+            this.flowLayoutPanel1.TabIndex = 6;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ",
+            "Khác"});
+            this.comboBox1.Location = new System.Drawing.Point(171, 11);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(370, 33);
+            this.comboBox1.TabIndex = 1;
             // 
             // FormAcc
             // 
@@ -459,6 +387,7 @@
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -466,11 +395,6 @@
             this.panel6.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
-            this.panel13.ResumeLayout(false);
-            this.panel13.PerformLayout();
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
@@ -501,19 +425,12 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

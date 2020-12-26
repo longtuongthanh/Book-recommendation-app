@@ -125,6 +125,9 @@ namespace BookRecommendationApp.Model
         // and others.
         public string PictureFile { get; set; }
 
+        public string Nickname { get; set; }
+        public string Uid { get; set; }
+
         public DateTime lastActive { get; set; }
         #endregion
     }

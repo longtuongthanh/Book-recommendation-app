@@ -29,7 +29,9 @@ namespace BookRecommendationApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            textBox1.Text = textBox10.Text;
+            textBox2.Text = textBox5.Text;
+            textBox4.Text = comboBox1.Text;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -64,6 +66,7 @@ namespace BookRecommendationApp
             Database.EditUser();
             pictureBox1.ImageLocation = pictureBox2.ImageLocation;
         }
-        
+       
+
     }
 }
