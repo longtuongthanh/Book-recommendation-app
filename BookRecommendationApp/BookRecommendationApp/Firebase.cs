@@ -153,7 +153,7 @@ namespace BookRecommendationApp
                     Database.Books.RemoveAll(item => book.Name == item.Name);
                     Database.Books.Add(book);
 
-                    onBookUpdate.Invoke(book);
+                    onBookUpdate?.Invoke(book);
                 });
 
                 return !task.IsFaulted;
@@ -180,7 +180,7 @@ namespace BookRecommendationApp
                     Database.Tags.RemoveAll(item => item == tag);
                     Database.Tags.Add(tag);
 
-                    onTagUpdate.Invoke();
+                    onTagUpdate?.Invoke();
                 });
 
                 return !task.IsFaulted;

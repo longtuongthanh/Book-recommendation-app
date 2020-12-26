@@ -111,18 +111,7 @@ namespace BookRecommendationApp
         {
             MaintainDistanceOfPanel1AndFlowPanel();
         }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void labelAuthor_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }

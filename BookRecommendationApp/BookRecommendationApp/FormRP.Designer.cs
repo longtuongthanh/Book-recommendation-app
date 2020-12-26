@@ -149,6 +149,7 @@
             this.Name = "FormRP";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormRP";
+            this.Load += new System.EventHandler(this.FormRP_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

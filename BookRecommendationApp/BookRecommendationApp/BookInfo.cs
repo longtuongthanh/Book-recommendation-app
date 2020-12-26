@@ -20,6 +20,8 @@ namespace BookRecommendationApp
         {
             InitializeComponent();
 
+            deltaDistanceP5_F3 = flowLayoutPanel3.Bottom - panel5.Top;
+
             currentBook = book;
 
             labelName.Text = book.Name;
@@ -155,14 +157,22 @@ namespace BookRecommendationApp
             currentBook.Comment = cmtList;
             Database.Edit(currentBook);
         }
-        
-
         private void textBox1_MouseClick(object sender, MouseEventArgs e)
         {
             textBox1.Text = "";
             textBox1.ForeColor = System.Drawing.SystemColors.InfoText;
         }
+        int? deltaDistanceP5_F3 = null;
+        void MaintainDistanceOfPanel5AndFlowPanel3()
+        {
+            if (deltaDistanceP5_F3 != null)
+            panel5.Top = flowLayoutPanel3.Bottom - deltaDistanceP5_F3.Value;
+        }
 
-      
+        private void flowLayoutPanel3_Resize(object sender, EventArgs e)
+        {
+            MaintainDistanceOfPanel5AndFlowPanel3();
+            labelDesc.MaximumSize = new System.Drawing.Size(flowLayoutPanel3.Width, 0);
+        }
     }
 }
