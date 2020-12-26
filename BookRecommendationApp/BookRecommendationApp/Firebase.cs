@@ -13,9 +13,21 @@ namespace BookRecommendationApp
     public class Firebase
     {
         #region Singleton
-        public static Firebase Ins => _ins;
-        private static readonly Firebase _ins = new Firebase();
-        private Firebase() { }
+        public static Firebase Ins
+        {
+            get
+            {
+                if (_ins == null)
+                    _ins = new Firebase();
+                return _ins;
+            }
+        }
+
+        private static Firebase _ins;
+        private Firebase()
+        {
+            authProvider = new FirebaseAuthProvider(new FirebaseConfig(firebaseApiKey));
+        }
         #endregion
 
         #region Constant
@@ -25,12 +37,11 @@ namespace BookRecommendationApp
         #region FirebaseSetting
         // TODO: export to file
         // TODO: encrypt said file
-        private const string firebaseApiKey = "AIzaSyDu098TxwLgFJsfaenUPBfC1z9jyGGT2N8";
+        private string firebaseApiKey = BookRecommendationApp.Properties.Settings.Default.firebaseApiKey;
         // Get at Setting->Cloud Messaging->Server Key
-        private const string databaseURL = "https://fir-test-bd7d1.firebaseio.com";
+        private string databaseURL = BookRecommendationApp.Properties.Settings.Default.databaseURL;
         // Get at Realtime Database
-        private FirebaseAuthProvider authProvider =
-            new FirebaseAuthProvider(new FirebaseConfig(firebaseApiKey));
+        private FirebaseAuthProvider authProvider;
         private FirebaseClient client = null;
         private FirebaseAuthLink token = null;
         private Task refreshToken;
