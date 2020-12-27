@@ -30,14 +30,11 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -47,20 +44,19 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.panel15.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -86,7 +82,6 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.flowLayoutPanel1);
-            this.tabPage1.Controls.Add(this.panel15);
             this.tabPage1.Controls.Add(this.panel4);
             this.tabPage1.Controls.Add(this.panel2);
             this.tabPage1.Controls.Add(this.panel1);
@@ -99,32 +94,12 @@
             this.tabPage1.Text = "Thông tin cá nhân";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // panel15
+            // flowLayoutPanel1
             // 
-            this.panel15.Controls.Add(this.textBox14);
-            this.panel15.Controls.Add(this.label15);
-            this.panel15.Location = new System.Drawing.Point(199, 193);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(613, 52);
-            this.panel15.TabIndex = 5;
-            // 
-            // textBox14
-            // 
-            this.textBox14.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox14.Location = new System.Drawing.Point(171, 8);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(414, 36);
-            this.textBox14.TabIndex = 1;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(3, 15);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(74, 29);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "Email:";
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(7, 306);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(977, 289);
+            this.flowLayoutPanel1.TabIndex = 6;
             // 
             // panel4
             // 
@@ -137,6 +112,7 @@
             // 
             // textBox4
             // 
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox4.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(171, 8);
             this.textBox4.Name = "textBox4";
@@ -155,20 +131,12 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.textBox2);
+            this.panel2.Controls.Add(this.dateTimePicker2);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(199, 77);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(613, 52);
             this.panel2.TabIndex = 2;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(171, 8);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(414, 36);
-            this.textBox2.TabIndex = 1;
             // 
             // label2
             // 
@@ -256,20 +224,12 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.textBox5);
+            this.panel5.Controls.Add(this.dateTimePicker1);
             this.panel5.Controls.Add(this.label5);
             this.panel5.Location = new System.Drawing.Point(216, 135);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(602, 52);
             this.panel5.TabIndex = 23;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(171, 8);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(370, 36);
-            this.textBox5.TabIndex = 1;
             // 
             // label5
             // 
@@ -289,6 +249,20 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(602, 52);
             this.panel6.TabIndex = 22;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ",
+            "Khác"});
+            this.comboBox1.Location = new System.Drawing.Point(171, 11);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(370, 33);
+            this.comboBox1.TabIndex = 1;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -347,25 +321,23 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
-            // flowLayoutPanel1
+            // dateTimePicker1
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(7, 306);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(977, 289);
-            this.flowLayoutPanel1.TabIndex = 6;
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(171, 15);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(370, 30);
+            this.dateTimePicker1.TabIndex = 1;
             // 
-            // comboBox1
+            // dateTimePicker2
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Nam",
-            "Nữ",
-            "Khác"});
-            this.comboBox1.Location = new System.Drawing.Point(171, 11);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(370, 33);
-            this.comboBox1.TabIndex = 1;
+            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(171, 19);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(414, 30);
+            this.dateTimePicker2.TabIndex = 7;
             // 
             // FormAcc
             // 
@@ -379,8 +351,6 @@
             this.Text = "FormAcc";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.panel15.ResumeLayout(false);
-            this.panel15.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -407,7 +377,6 @@
         public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBox1;
@@ -417,12 +386,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label6;
@@ -432,5 +397,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

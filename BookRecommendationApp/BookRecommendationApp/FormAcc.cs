@@ -25,13 +25,30 @@ namespace BookRecommendationApp
                 pictureBox1.Image = pic.GetImage();
             }
             else;
+            load();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = textBox10.Text;
-            textBox2.Text = textBox5.Text;
-            textBox4.Text = comboBox1.Text;
+
+            Database.User.Nickname = textBox10.Text;
+            Database.User.GioiTinh = comboBox1.Text;
+            Database.User.NgaySinh = dateTimePicker1.Value;
+
+
+            Database.EditUser();
+            //textBox1.Text = Database.User.Nickname;
+            //textBox2.Text = Database.User.GioiTinh;
+            //dateTimePicker2.Value = Database.User.NgaySinh;
+        }
+        void load()
+        {
+            textBox1.Text = Database.User.Nickname;
+            textBox4.Text = Database.User.GioiTinh;
+            //if (Database.User.NgaySinh >= 12 / 31 / 9998 && Database.User.NgaySinh <= 1 / 1 / 1975 || Database.User.NgaySinh = null)
+            dateTimePicker2.Value = DateTime.Now.Date;
+            //dateTimePicker2.Value = Database.User.NgaySinh;
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -66,7 +83,10 @@ namespace BookRecommendationApp
             Database.EditUser();
             pictureBox1.ImageLocation = pictureBox2.ImageLocation;
         }
-       
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
