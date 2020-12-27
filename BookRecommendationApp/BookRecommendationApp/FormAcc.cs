@@ -43,11 +43,13 @@ namespace BookRecommendationApp
         }
         void load()
         {
+            
             textBox1.Text = Database.User.Nickname;
             textBox4.Text = Database.User.GioiTinh;
-            //if (Database.User.NgaySinh >= 12 / 31 / 9998 && Database.User.NgaySinh <= 1 / 1 / 1975 || Database.User.NgaySinh = null)
-            dateTimePicker2.Value = DateTime.Now.Date;
-            //dateTimePicker2.Value = Database.User.NgaySinh;
+            if (Database.User.NgaySinh != dateTimePicker1.Value)
+                dateTimePicker2.Value = DateTime.Now.Date;
+            else
+                dateTimePicker2.Value = Database.User.NgaySinh;
 
         }
 

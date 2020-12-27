@@ -35,6 +35,7 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -44,6 +45,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -53,8 +55,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -77,7 +77,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1000, 630);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl1.TabIndex = 25;
             // 
             // tabPage1
             // 
@@ -105,7 +105,7 @@
             // 
             this.panel4.Controls.Add(this.textBox4);
             this.panel4.Controls.Add(this.label4);
-            this.panel4.Location = new System.Drawing.Point(199, 135);
+            this.panel4.Location = new System.Drawing.Point(199, 89);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(613, 52);
             this.panel4.TabIndex = 3;
@@ -116,8 +116,9 @@
             this.textBox4.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(171, 8);
             this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(414, 36);
-            this.textBox4.TabIndex = 1;
+            this.textBox4.TabIndex = 23;
             // 
             // label4
             // 
@@ -133,10 +134,20 @@
             // 
             this.panel2.Controls.Add(this.dateTimePicker2);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(199, 77);
+            this.panel2.Location = new System.Drawing.Point(199, 162);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(613, 52);
             this.panel2.TabIndex = 2;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Enabled = false;
+            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(171, 12);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(414, 30);
+            this.dateTimePicker2.TabIndex = 24;
             // 
             // label2
             // 
@@ -162,8 +173,9 @@
             this.textBox1.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(171, 8);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(414, 36);
-            this.textBox1.TabIndex = 1;
+            this.textBox1.TabIndex = 22;
             // 
             // label1
             // 
@@ -207,7 +219,7 @@
             this.button2.Location = new System.Drawing.Point(8, 219);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(91, 36);
-            this.button2.TabIndex = 25;
+            this.button2.TabIndex = 5;
             this.button2.Text = "Chọn ảnh";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -217,7 +229,7 @@
             this.button1.Location = new System.Drawing.Point(630, 193);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(127, 48);
-            this.button1.TabIndex = 24;
+            this.button1.TabIndex = 4;
             this.button1.Text = "Cập nhật";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -230,6 +242,16 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(602, 52);
             this.panel5.TabIndex = 23;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(171, 15);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(370, 30);
+            this.dateTimePicker1.TabIndex = 3;
+            this.dateTimePicker1.UseWaitCursor = true;
             // 
             // label5
             // 
@@ -261,7 +283,7 @@
             this.comboBox1.Location = new System.Drawing.Point(171, 11);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(370, 33);
-            this.comboBox1.TabIndex = 1;
+            this.comboBox1.TabIndex = 2;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label6
@@ -306,7 +328,7 @@
             this.button4.Location = new System.Drawing.Point(105, 219);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(91, 36);
-            this.button4.TabIndex = 10;
+            this.button4.TabIndex = 6;
             this.button4.Text = "Thay ảnh";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -320,24 +342,6 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(171, 15);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(370, 30);
-            this.dateTimePicker1.TabIndex = 1;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(171, 19);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(414, 30);
-            this.dateTimePicker2.TabIndex = 7;
             // 
             // FormAcc
             // 
@@ -397,7 +401,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
     }
 }
