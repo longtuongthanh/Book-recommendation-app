@@ -115,5 +115,10 @@ namespace BookRecommendationApp
         {
 
         }
+
+        private void labelName_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
