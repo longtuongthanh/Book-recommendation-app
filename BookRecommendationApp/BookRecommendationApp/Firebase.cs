@@ -12,6 +12,24 @@ namespace BookRecommendationApp
 {
     public class Firebase
     {
+        #region Singleton
+        public static Firebase Ins
+        {
+            get
+            {
+                if (_ins == null)
+                    _ins = new Firebase();
+                return _ins;
+            }
+        }
+
+        private static Firebase _ins;
+        private Firebase()
+        {
+            authProvider = new FirebaseAuthProvider(new FirebaseConfig(firebaseApiKey));
+        }
+        #endregion
+
         #region Constant
         private const int TimeOut = 10000;
         #endregion
@@ -19,11 +37,11 @@ namespace BookRecommendationApp
         #region FirebaseSetting
         // TODO: export to file
         // TODO: encrypt said file
-        private const string firebaseApiKey = "AIzaSyDu098TxwLgFJsfaenUPBfC1z9jyGGT2N8";
-        private const string databaseURL = "https://fir-test-bd7d1.firebaseio.com";
-
-        private FirebaseAuthProvider authProvider =
-            new FirebaseAuthProvider(new FirebaseConfig(firebaseApiKey));
+        private string firebaseApiKey = BookRecommendationApp.Properties.Settings.Default.firebaseApiKey;
+        // Get at Setting->Cloud Messaging->Server Key
+        private string databaseURL = BookRecommendationApp.Properties.Settings.Default.databaseURL;
+        // Get at Realtime Database
+        private FirebaseAuthProvider authProvider;
         private FirebaseClient client = null;
         private FirebaseAuthLink token = null;
         private Task refreshToken;
@@ -48,6 +66,7 @@ namespace BookRecommendationApp
         #region LoadData
         public bool SignUp(string email, string password)
         {
+            Util.StartLoadingForCursor();
             var authActionSignUp = authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
             bool error = false;
             try { authActionSignUp.Wait(TimeOut); }
@@ -55,20 +74,31 @@ namespace BookRecommendationApp
             if (authActionSignUp.IsFaulted || error || !authActionSignUp.IsCompleted)
             {
                 //MessageBox.Show(SignUpFailedPrompt);
+                Util.StopLoadingForCursor();
                 return false;
             }
             Token = authActionSignUp.Result;
+
+            Client.Child("Users").Child(Token.User.LocalId).PutAsync(new Model.User
+            {
+                BookListID = new List<string>(),
+                Score = 0,
+                Uid = Token.User.LocalId
+            }).Wait();
+            Util.StopLoadingForCursor();
             return true;
         }
 
         public bool SignIn(string email, string password)
         {
+            Util.StartLoadingForCursor();
             var authActionSignIn = authProvider.SignInWithEmailAndPasswordAsync(email, password);
             bool error = false;
             try { authActionSignIn.Wait(TimeOut); }
             catch { error = true; }
             if (authActionSignIn.IsFaulted || error || !authActionSignIn.IsCompleted)
             {
+                Util.StopLoadingForCursor();
                 return false;
                 /*
                 if (triedOnce)
@@ -96,44 +126,69 @@ namespace BookRecommendationApp
                 //*/
             }
             Token = authActionSignIn.Result;
+            Util.StopLoadingForCursor();
             return true;
         }
 
         #region Tasks
+        public event Action<Book> onBookUpdate;
+        private IDisposable subscribeBook;
         private bool LoadBook()
         {
-            var task = Client.Child("Books").OnceAsync<Book>();
+            var query = Client.Child("Books");
+
+            var task = query.OnceAsync<Book>();
             var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
             taskEnd.Wait();
             if (taskEnd.Result == task)
             {
                 try { task.Wait(); } catch { return false; }
                 var taskResult = task.Result;
+
                 Database.Books = taskResult.Select(item => item.Object).ToList();
+
+                subscribeBook = query.AsObservable<Book>().Subscribe(ev =>
+                {
+                    Book book = ev.Object;
+                    Database.Books.RemoveAll(item => book.Name == item.Name);
+                    Database.Books.Add(book);
+
+                    onBookUpdate?.Invoke(book);
+                });
+
                 return !task.IsFaulted;
             }
             else return false;
         }
+        public event Action onTagUpdate;
+        private IDisposable subscribeTag;
         private bool LoadTags()
         {
-            var task = Client.Child("Tags").OnceSingleAsync<List<string>>();
+            var query = Client.Child("Tags");
+
+            var task = query.OnceSingleAsync<List<string>>();
             var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
             taskEnd.Wait();
             if (taskEnd.Result == task)
             {
                 try { task.Wait(); } catch { return false; }
                 Database.Tags = task.Result;
+
+                subscribeTag = query.AsObservable<string>().Subscribe(ev => 
+                {
+                    string tag = ev.Object;
+                    Database.Tags.RemoveAll(item => item == tag);
+                    Database.Tags.Add(tag);
+
+                    onTagUpdate?.Invoke();
+                });
+
                 return !task.IsFaulted;
             }
             else return false;
         }
         private bool LoadUser()
         {
-            Client.Child("Users").Child(Token.User.LocalId).PutAsync(new Model.User
-            {
-                BookListID = new List<string>(),
-                Score = 0
-            }).Wait();
             var task = Client.Child("Users").Child(Token.User.LocalId).OnceSingleAsync<Model.User>();
             var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
             taskEnd.Wait();
@@ -145,9 +200,23 @@ namespace BookRecommendationApp
             }
             else return false;
         }
+        private bool LoadUsers()
+        {
+            var task = Client.Child("Users").OnceAsync<Model.User>();
+            var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
+            taskEnd.Wait();
+            if (taskEnd.Result == task)
+            {
+                try { task.Wait(); } catch { return false; }
+                var taskResult = task.Result;
+                Database.Users = taskResult.Select(item => item.Object).ToList();
+                return !task.IsFaulted;
+            }
+            else return false;
+        }
         private bool LoadSetting()
         {
-            var task = Client.Child("Setting").OnceSingleAsync<Setting>(new TimeSpan(0, 0, 2));
+            var task = Client.Child("Setting").OnceSingleAsync<Setting>();
             var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
             taskEnd.Wait();
             if (taskEnd.Result == task)
@@ -158,20 +227,48 @@ namespace BookRecommendationApp
             }
             else return false;
         }
+        // Returns Picture.Content
+        public string LoadPicture(string FilePath)
+        {
+            // Firebase doesn't accept '.'
+            if (FilePath == null) return null;
+            FilePath = FilePath.Replace(".", ",");
+
+            var task = Client.Child("Picture").Child(FilePath).OnceSingleAsync<string>();
+            var taskEnd = Task.WhenAny(task, Task.Delay(TimeOut));
+            taskEnd.Wait();
+            if (taskEnd.Result == task)
+            {
+                try { task.Wait(); } catch { return null; }
+                if (task.IsFaulted) return null;
+                return task.Result;
+            }
+            else return null;
+        }
+        #endregion
+
+        #region Refresh Token
         public async Task RefreshToken()
         {
+            // Non-blocking thread, so infinite loop is ok
             while (true)
             {
-                var task = Token.GetFreshAuthAsync();
-                try { task.Wait(); } catch { continue; }
-                Token = task.Result;
+                // Yield control if Token not expired.
                 await Task.Delay(Token.ExpiresIn);
+                var task = Token.GetFreshAuthAsync();
+                try { task.Wait(); } catch
+                {
+                    Console.WriteLine("WARNING: cannot refresh token");
+                    continue;
+                }
+                Token = task.Result;
             }
         }
         #endregion
 
         public bool LoadFirebase(string username = null, string password = null)
         {
+            Util.StartLoadingForCursor();
             bool result = true;
             if (Client == null)
                 result = SignIn(username, password);
@@ -182,11 +279,16 @@ namespace BookRecommendationApp
             result &= LoadBook();
             result &= LoadTags();
             result &= LoadUser();
+            result &= LoadUsers();
             result &= LoadSetting();
             /*
             if (result == false)
                 MessageBox.Show(LoadDataFromFirebaseFailed);
             //*/
+
+            Database.UserActive();
+
+            Util.StopLoadingForCursor();
             return result;
         }
         #endregion

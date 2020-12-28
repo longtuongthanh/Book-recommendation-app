@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace BookRecommendationApp
 {
-    public partial class FormSetting : Form
+    public partial class FormDK : Form
     {
-        public FormSetting()
+        public FormDK()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -148,12 +148,48 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addBook.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="addBook.Designer.cs">
+      <DependentUpon>addBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddBooks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddBooks.Designer.cs">
+      <DependentUpon>AddBooks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookInfo.Designer.cs">
+      <DependentUpon>BookInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cmt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="cmt.Designer.cs">
+      <DependentUpon>cmt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Firebase.cs" />
     <Compile Include="FormAcc.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAcc.Designer.cs">
       <DependentUpon>FormAcc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookItem.Designer.cs">
+      <DependentUpon>BookItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDK.Designer.cs">
+      <DependentUpon>FormDK.cs</DependentUpon>
     </Compile>
     <Compile Include="FormHelp.cs">
       <SubType>Form</SubType>
@@ -173,18 +209,19 @@
     <Compile Include="FormMyBooks.Designer.cs">
       <DependentUpon>FormMyBooks.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRP.Designer.cs">
+      <DependentUpon>FormRP.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSearch.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSearch.Designer.cs">
       <DependentUpon>FormSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSetting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormSetting.Designer.cs">
-      <DependentUpon>FormSetting.cs</DependentUpon>
-    </Compile>
+    <Compile Include="list.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,13 +235,41 @@
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Book.cs" />
+    <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Database.cs" />
+    <Compile Include="Model\Error.cs" />
+    <Compile Include="Model\Picture.cs" />
     <Compile Include="Model\Setting.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TagItem.Designer.cs">
+      <DependentUpon>TagItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util.cs" />
+    <EmbeddedResource Include="addBook.resx">
+      <DependentUpon>addBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddBooks.resx">
+      <DependentUpon>AddBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookInfo.resx">
+      <DependentUpon>BookInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cmt.resx">
+      <DependentUpon>cmt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAcc.resx">
       <DependentUpon>FormAcc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookItem.resx">
+      <DependentUpon>BookItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDK.resx">
+      <DependentUpon>FormDK.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormHelp.resx">
       <DependentUpon>FormHelp.cs</DependentUpon>
@@ -215,11 +280,11 @@
     <EmbeddedResource Include="FormMyBooks.resx">
       <DependentUpon>FormMyBooks.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormRP.resx">
+      <DependentUpon>FormRP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSearch.resx">
       <DependentUpon>FormSearch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormSetting.resx">
-      <DependentUpon>FormSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -237,6 +302,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TagItem.resx">
+      <DependentUpon>TagItem.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -406,6 +474,16 @@
     <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Untitled.png" />
+    <None Include="Resources\diary %282%29.png" />
+    <None Include="Resources\books.png" />
+    <None Include="Resources\download.png" />
+    <None Include="Resources\81mWACgHKxL.jpg" />
+    <None Include="Resources\Dislike%28disabled%29.png" />
+    <None Include="Resources\book4.png" />
+    <Content Include="Resources\Dislike.png" />
+    <None Include="Resources\Like%28disabled%29.png" />
+    <Content Include="Resources\Like.png" />
     <Content Include="Resources\logo1.ico" />
     <Content Include="Resources\logo1.png" />
   </ItemGroup>

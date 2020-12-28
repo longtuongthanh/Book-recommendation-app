@@ -16,5 +16,11 @@ namespace BookRecommendationApp
         {
             InitializeComponent();
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormDK frmdk = new FormDK();
+            frmdk.Show();
+        }
     }
 }
