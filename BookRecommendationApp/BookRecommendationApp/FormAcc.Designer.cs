@@ -148,6 +148,7 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(414, 30);
             this.dateTimePicker2.TabIndex = 24;
+            this.dateTimePicker2.CustomFormat = "dd-MM-yyyy";
             // 
             // label2
             // 
@@ -252,6 +253,7 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(370, 30);
             this.dateTimePicker1.TabIndex = 3;
             this.dateTimePicker1.UseWaitCursor = true;
+            this.dateTimePicker1.CustomFormat = "dd-MM-yyyy";
             // 
             // label5
             // 
