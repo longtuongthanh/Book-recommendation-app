@@ -44,6 +44,8 @@ namespace BookRecommendationApp.Model
             {
                 BookListID.Add(book.Name);
                 Database.EditUser();
+                book.AddToList++;
+                Database.Edit(book);
             }
         }
         public void RemoveFromBookList(Book book)
@@ -53,12 +55,12 @@ namespace BookRecommendationApp.Model
             {
                 BookListID.Remove(book.Name);
                 Database.EditUser();
+                book.AddToList--;
+                Database.Edit(book);
             }
         }
         public void AddToLikeList(Book book)
         {
-            // TODO: change book
-
             bool userChanged = false;
             if (!LikeListID.Contains(book.Name))
             {
@@ -73,7 +75,10 @@ namespace BookRecommendationApp.Model
                 userChanged = true;
             }
             if (userChanged)
+            {
                 Database.EditUser();
+                Database.Edit(book);
+            }
         }
         public void AddToDislikeList(Book book)
         {
@@ -92,7 +97,10 @@ namespace BookRecommendationApp.Model
                 userChanged = true;
             }
             if (userChanged)
+            {
                 Database.EditUser();
+                Database.Edit(book);
+            }
         }
         public void RemoveFromLikeAndDislikeList(Book book)
         {
@@ -101,15 +109,20 @@ namespace BookRecommendationApp.Model
             if (LikeListID.Contains(book.Name))
             {
                 LikeListID.Remove(book.Name);
+                book.Likes--;
                 userChanged = true;
             }
             if (DislikeListID.Contains(book.Name))
             {
                 DislikeListID.Remove(book.Name);
+                book.Dislike--;
                 userChanged = true;
             }
             if (userChanged)
+            {
                 Database.EditUser();
+                Database.Edit(book);
+            }
         }
         #endregion
 

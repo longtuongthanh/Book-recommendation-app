@@ -16,16 +16,33 @@ namespace BookRecommendationApp
         
         private Book currentBook;
         List<Comment> cmtList = new List<Comment>();
+
+        Action<Book> refreshOnUpdate;
         public BookInfo(Book book)
         {
             InitializeComponent();
 
             currentBook = book;
-
-            labelName.Text = book.Name;
-            labelAuthor.Text = "bởi " + book.Author;
-            labelDesc.Text = book.Description;
-            foreach (var item in book.Tags)
+            LoadCurrentBookInfo();
+        }
+        private void Form_Closing(object sender, EventArgs e)
+        {
+            Firebase.Ins.onBookUpdate -= refreshOnUpdate;
+        }
+        private void ClearCurrentBookInfo()
+        {
+            button1.Click -= onButton1Click;
+            button2.Click -= onButton2Click;
+            picture.Image = BookRecommendationApp.Properties.Resources.book;
+        }
+        EventHandler onButton1Click;
+        EventHandler onButton2Click;
+        private void LoadCurrentBookInfo()
+        {
+            labelName.Text = currentBook.Name;
+            labelAuthor.Text = "bởi " + currentBook.Author;
+            labelDesc.Text = currentBook.Description;
+            foreach (var item in currentBook.Tags)
             {
                 Label tag = new Label();
                 tag.Text = item;
@@ -34,16 +51,16 @@ namespace BookRecommendationApp
                 flowLayoutPanel1.Controls.Add(tag);
                 tag.Show();
             }
-            cmtList = book.Comment;
-            foreach (var item in book.Comment)
+            cmtList = currentBook.Comment;
+            foreach (var item in currentBook.Comment)
             {
                 cmt c = new cmt();
                 c.hienthi(item);
                 flowLayoutPanel2.Controls.Add(c);
 
 
-            }  
-            Picture pic = book.GetPicture();
+            }
+            Picture pic = currentBook.GetPicture();
 
             if (pic.GetImage() != null)
                 picture.Image = pic.GetImage();
@@ -54,42 +71,60 @@ namespace BookRecommendationApp
             // Action is Remove if book is in booklist
             // Action is Add if book is not in booklist
             List<string> bookList = Database.User.BookListID;
-            if (bookList.Contains(book.Name))
+            if (bookList.Contains(currentBook.Name))
             {
                 button1.Text = "Xóa";
-                button1.MouseClick += (obj, arg) =>
+                onButton1Click = (obj, arg) =>
                 {
-                    Database.User.RemoveFromBookList(book);
-                    button1_Click(book, arg); ;
+                    Database.User.RemoveFromBookList(currentBook);
+                    button1_Click(currentBook, arg); ;
                 };
+                button1.Click += onButton1Click;
                 button1.BackColor = Color.Crimson;
             }
             else
             {
                 button1.Text = "Thêm";
-                button1.MouseClick += (obj, arg) =>
+                onButton2Click = (obj, arg) =>
                 {
-                    Database.User.AddToBookList(book);
-                    button1_Click(book, arg);
+                    Database.User.AddToBookList(currentBook);
+                    button1_Click(currentBook, arg);
                 };
+                button1.Click += onButton2Click;
                 button1.BackColor = Color.RoyalBlue;
+            }
+            #endregion
+
+            #region Like / Dislike initial type
+            if (Database.User.LikeListID.Contains(currentBook.Name))
+            {
+                this.pictureBox2.Image = Properties.Resources.Like;
+            }
+            else
+            {
+                this.pictureBox2.Image = Properties.Resources.Like_disabled_;
+            }
+
+            if (Database.User.DislikeListID.Contains(currentBook.Name))
+            {
+                this.pictureBox1.Image = Properties.Resources.Dislike;
+            }
+            else
+            {
+                this.pictureBox1.Image = Properties.Resources.Dislike_disabled_;
             }
             #endregion
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Panel panelLoad = (this.Parent as Panel);
-
-            foreach (Control item in panelLoad.Controls)
-                item.Dispose();
-
-            panelLoad.Controls.Clear();
+            MainMenu owner = Parent.Parent.Parent as MainMenu;
+            owner.ClearPanelLoad();
 
             FormMyBooks frmBI = new FormMyBooks() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             Book book = currentBook;
             frmBI.FormBorderStyle = FormBorderStyle.None;
-            panelLoad.Controls.Add(frmBI);
+            owner.panelLoad.Controls.Add(frmBI);
             frmBI.Show();
         }
 
@@ -136,7 +171,7 @@ namespace BookRecommendationApp
         {
             // Merge conflict
 
-            FormRP frmRP = new FormRP();
+            FormRP frmRP = new FormRP(currentBook);
             frmRP.Show();
         }
 
@@ -163,6 +198,23 @@ namespace BookRecommendationApp
             textBox1.ForeColor = System.Drawing.SystemColors.InfoText;
         }
 
-      
+        private void BookInfo_Load(object sender, EventArgs e)
+        {
+            refreshOnUpdate = (item) =>
+            {
+                Action<Book> action = (temp) =>
+                {
+                    if (temp.Name == currentBook.Name)
+                    {
+                        currentBook = temp;
+                        ClearCurrentBookInfo();
+                        LoadCurrentBookInfo();
+                    }
+                };
+                // Cross-thread action
+                this.Invoke(action, item);
+            };
+            Firebase.Ins.onBookUpdate += refreshOnUpdate;
+        }
     }
 }

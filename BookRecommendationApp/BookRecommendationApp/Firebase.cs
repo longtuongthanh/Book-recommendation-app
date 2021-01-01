@@ -5,6 +5,7 @@ using Firebase.Database.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -132,7 +133,7 @@ namespace BookRecommendationApp
 
         #region Tasks
         public event Action<Book> onBookUpdate;
-        private IDisposable subscribeBook;
+        public IDisposable subscribeBook;
         private bool LoadBook()
         {
             var query = Client.Child("Books");
@@ -149,19 +150,25 @@ namespace BookRecommendationApp
 
                 subscribeBook = query.AsObservable<Book>().Subscribe(ev =>
                 {
-                    Book book = ev.Object;
-                    Database.Books.RemoveAll(item => book.Name == item.Name);
-                    Database.Books.Add(book);
+                    try
+                    {
+                        Book book = ev.Object;
+                        Database.Books.RemoveAll(item => book.Name == item.Name);
+                        Database.Books.Add(book);
 
-                    onBookUpdate.Invoke(book);
-                });
+                        onBookUpdate?.Invoke(book);
+                    }
+                    catch (Exception e) {; }
+                },
+                (Exception er) => { Console.WriteLine(er.ToString()); }, // If error
+                () => { Console.WriteLine("Xong"); }); // When done
 
                 return !task.IsFaulted;
             }
             else return false;
         }
         public event Action onTagUpdate;
-        private IDisposable subscribeTag;
+        public IDisposable subscribeTag;
         private bool LoadTags()
         {
             var query = Client.Child("Tags");
@@ -174,14 +181,15 @@ namespace BookRecommendationApp
                 try { task.Wait(); } catch { return false; }
                 Database.Tags = task.Result;
 
+                //*
                 subscribeTag = query.AsObservable<string>().Subscribe(ev => 
                 {
                     string tag = ev.Object;
                     Database.Tags.RemoveAll(item => item == tag);
                     Database.Tags.Add(tag);
 
-                    onTagUpdate.Invoke();
-                });
+                    onTagUpdate?.Invoke();
+                });//*/
 
                 return !task.IsFaulted;
             }

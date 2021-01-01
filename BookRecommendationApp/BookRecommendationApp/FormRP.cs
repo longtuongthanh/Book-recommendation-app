@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookRecommendationApp.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,13 +13,24 @@ namespace BookRecommendationApp
 {
     public partial class FormRP : Form
     {
-        public FormRP()
+        Book currentBook;
+        public FormRP(Book book)
         {
             InitializeComponent();
+            currentBook = book;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (checkBox1.Checked)
+                currentBook.BaoCao.Add(checkBox1.Text);
+            if (checkBox2.Checked)
+                currentBook.BaoCao.Add(checkBox2.Text);
+            if (checkBox3.Checked)
+                currentBook.BaoCao.Add(checkBox3.Text);
+
+            Database.Edit(currentBook);
+
             MessageBox.Show("Đã gửi báo cáo!");
         }
 

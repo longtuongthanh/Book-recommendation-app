@@ -13,6 +13,7 @@ namespace BookRecommendationApp
 {
     public partial class FormHome : Form
     {
+        Action<Book> refreshOnUpdate;
         public FormHome()
         {
             InitializeComponent();
@@ -52,37 +53,49 @@ namespace BookRecommendationApp
 
         private void SelectedBook(object sender, EventArgs e)
         {
-            Panel panelLoad = (this.Parent as Panel);
-
-            foreach (Control item in panelLoad.Controls)
-                item.Dispose();
-
-            panelLoad.Controls.Clear();
+            MainMenu owner = Parent.Parent.Parent as MainMenu;
+            owner.ClearPanelLoad();
 
             BookInfo frmBI = new BookInfo(sender as Book) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             frmBI.FormBorderStyle = FormBorderStyle.None;
-            panelLoad.Controls.Add(frmBI);
+            owner.panelLoad.Controls.Add(frmBI);
             frmBI.Show();
         }
         private void AddBook(object sender, EventArgs e)
         {
-            Panel panelLoad = (this.Parent as Panel);
-
-            foreach (Control item in panelLoad.Controls)
-                item.Dispose();
-
-            panelLoad.Controls.Clear();
+            MainMenu owner = Parent.Parent.Parent as MainMenu;
+            owner.ClearPanelLoad();
 
             FormMyBooks frmBI = new FormMyBooks() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             Book book = sender as Book;
             frmBI.FormBorderStyle = FormBorderStyle.None;
-            panelLoad.Controls.Add(frmBI);
+            owner.panelLoad.Controls.Add(frmBI);
             frmBI.Show();
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void FormHome_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Firebase.Ins.onBookUpdate -= refreshOnUpdate;
+        }
+
+        private void FormHome_Load(object sender, EventArgs e)
+        {
+            refreshOnUpdate = (book) =>
+            {
+                Action action = () =>
+                {
+                    ClearBooks();
+                    LoadBooks();
+                };
+                // Cross-thread action
+                this.Invoke(action);
+            };
+            Firebase.Ins.onBookUpdate += refreshOnUpdate;
         }
     }
 }

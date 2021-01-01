@@ -20,7 +20,9 @@ namespace BookRecommendationApp
             this.panelLoad.Controls.Add(frmHome);
             frmHome.Show();
         }
-  
+
+        // Make sure this is disposed when MainMenu is.
+        Firebase firebase = Firebase.Ins;
 
         private void butExit_Click_1(object sender, EventArgs e)
         {
@@ -43,10 +45,8 @@ namespace BookRecommendationApp
 
         private void butHome_Click(object sender, EventArgs e)
         {
-            foreach (Control item in this.panelLoad.Controls)
-                item.Dispose();
+            ClearPanelLoad();
 
-            this.panelLoad.Controls.Clear();
             FormHome frmHome = new FormHome() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             frmHome.FormBorderStyle = FormBorderStyle.None;
             this.panelLoad.Controls.Add(frmHome);
@@ -55,10 +55,7 @@ namespace BookRecommendationApp
 
         private void butMybooks_Click(object sender, EventArgs e)
         {
-            foreach (Control item in this.panelLoad.Controls)
-                item.Dispose();
-
-            this.panelLoad.Controls.Clear();
+            ClearPanelLoad();
 
             FormMyBooks frmMB = new FormMyBooks() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             frmMB.FormBorderStyle = FormBorderStyle.None;
@@ -67,10 +64,7 @@ namespace BookRecommendationApp
         }           
         private void butAcc_Click(object sender, EventArgs e)
         {
-            foreach (Control item in this.panelLoad.Controls)
-                item.Dispose();
-
-            this.panelLoad.Controls.Clear();
+            ClearPanelLoad();
 
             FormAcc frmAcc = new FormAcc() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             frmAcc.FormBorderStyle = FormBorderStyle.None;
@@ -80,10 +74,7 @@ namespace BookRecommendationApp
 
         private void butHelp_Click(object sender, EventArgs e)
         {
-            foreach (Control item in this.panelLoad.Controls)
-                item.Dispose();
-
-            this.panelLoad.Controls.Clear();
+            ClearPanelLoad();
 
             FormHelp frmHelp = new FormHelp() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             frmHelp.FormBorderStyle = FormBorderStyle.None;
@@ -94,10 +85,7 @@ namespace BookRecommendationApp
 
         private void butSearch_Click(object sender, EventArgs e)
         {
-            foreach (Control item in this.panelLoad.Controls)
-                item.Dispose();
-
-            this.panelLoad.Controls.Clear();
+            ClearPanelLoad();
 
             frmSearch frmSearch = new frmSearch() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             frmSearch.FormBorderStyle = FormBorderStyle.None;
@@ -108,15 +96,25 @@ namespace BookRecommendationApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            foreach (Control item in this.panelLoad.Controls)
-                item.Dispose();
-
-            this.panelLoad.Controls.Clear();
+            ClearPanelLoad();
 
             AddBooks frmadd = new AddBooks { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             frmadd.FormBorderStyle = FormBorderStyle.None;
             this.panelLoad.Controls.Add(frmadd);
             frmadd.Show();
+        }
+
+        public void ClearPanelLoad()
+        {
+            foreach (Control item in this.panelLoad.Controls)
+            {
+                if (item is Form)
+                    (item as Form).Hide();
+                else
+                    item.Dispose();
+            }
+
+            this.panelLoad.Controls.Clear();
         }
     }
 }

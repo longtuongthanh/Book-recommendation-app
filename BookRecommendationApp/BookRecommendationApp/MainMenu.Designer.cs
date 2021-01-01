@@ -335,7 +335,7 @@
         private System.Windows.Forms.Button butMin;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panelLoad1;
-        private System.Windows.Forms.Panel panelLoad;
+        public System.Windows.Forms.Panel panelLoad;
         private System.Windows.Forms.Button button1;
     }
 }

@@ -57,16 +57,12 @@ namespace BookRecommendationApp
 
         private void SelectedBook(object sender, EventArgs e)
         {
-            Panel panelLoad = (this.Parent as Panel);
-
-            foreach (Control item in panelLoad.Controls)
-                item.Dispose();
-
-            panelLoad.Controls.Clear();
+            MainMenu owner = Parent.Parent.Parent as MainMenu;
+            owner.ClearPanelLoad();
 
             BookInfo frmBI = new BookInfo(sender as Book) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             frmBI.FormBorderStyle = FormBorderStyle.None;
-            panelLoad.Controls.Add(frmBI);
+            owner.panelLoad.Controls.Add(frmBI);
             frmBI.Show();
         }
         private void RemoveBook(object sender, EventArgs e)

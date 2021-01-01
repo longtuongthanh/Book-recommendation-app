@@ -36,7 +36,10 @@ namespace BookRecommendationApp
             pic.SetNewName();
             book.PictureFile = pic.FilePath;
 
-           
+           if (Database.Books.Any(item => book.Name == item.Name))
+            {
+                MessageBox.Show("Sách này đã có người giới thiệu.", "Sách trùng tên");
+            }
 
             Database.Add(book);
             Database.Add(pic);

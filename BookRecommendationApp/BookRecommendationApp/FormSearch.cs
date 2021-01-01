@@ -135,38 +135,35 @@ namespace BookRecommendationApp
             Firebase.Ins.onBookUpdate -= updateOnDBBookChange;
             updateOnDBBookChange = (book) =>
             {
-                ClearSearchResult();
-                GetSearchResult();
+                Action action = () => 
+                {
+                    ClearSearchResult();
+                    GetSearchResult();
+                };
+                // Cross-thread action
+                this.Invoke(action);
             };
             Firebase.Ins.onBookUpdate += updateOnDBBookChange;
         }
         private void SelectedBook(object sender, EventArgs e)
         {
-            Panel panelLoad = (this.Parent as Panel);
-
-            foreach (Control item in panelLoad.Controls)
-                item.Dispose();
-
-            panelLoad.Controls.Clear();
+            MainMenu owner = Parent.Parent.Parent as MainMenu;
+            owner.ClearPanelLoad();
 
             BookInfo frmBI = new BookInfo(sender as Book) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             frmBI.FormBorderStyle = FormBorderStyle.None;
-            panelLoad.Controls.Add(frmBI);
+            owner.panelLoad.Controls.Add(frmBI);
             frmBI.Show();
         }
         private void AddBook(object sender, EventArgs e)
         {
-            Panel panelLoad = (this.Parent as Panel);
-
-            foreach (Control item in panelLoad.Controls)
-                item.Dispose();
-
-            panelLoad.Controls.Clear();
+            MainMenu owner = Parent.Parent.Parent as MainMenu;
+            owner.ClearPanelLoad();
 
             FormMyBooks frmBI = new FormMyBooks() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             Book book = sender as Book;
             frmBI.FormBorderStyle = FormBorderStyle.None;
-            panelLoad.Controls.Add(frmBI);
+            owner.panelLoad.Controls.Add(frmBI);
             frmBI.Show();
         }
 
