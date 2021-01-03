@@ -39,6 +39,7 @@ namespace BookRecommendationApp
            if (Database.Books.Any(item => book.Name == item.Name))
             {
                 MessageBox.Show("Sách này đã có người giới thiệu.", "Sách trùng tên");
+                return;
             }
 
             Database.Add(book);
