@@ -38,5 +38,10 @@ namespace BookRecommendationApp
         {
             this.Close();
         }
+
+        private void FormRP_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

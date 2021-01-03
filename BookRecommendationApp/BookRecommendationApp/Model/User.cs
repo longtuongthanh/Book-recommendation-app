@@ -140,7 +140,8 @@ namespace BookRecommendationApp.Model
 
         public string Nickname { get; set; }
         public string Uid { get; set; }
-
+        public string GioiTinh { get; set; }
+        public DateTime NgaySinh { get; set; }
         public DateTime lastActive { get; set; }
         #endregion
     }
