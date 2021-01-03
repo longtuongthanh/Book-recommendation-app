@@ -10,17 +10,16 @@ using System.Windows.Forms;
 
 namespace BookRecommendationApp
 {
-    public partial class FormHelp : Form
+    public partial class FormDK : Form
     {
-        public FormHelp()
+        public FormDK()
         {
             InitializeComponent();
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            FormDK frmdk = new FormDK();
-            frmdk.Show();
+            this.Close();
         }
     }
 }

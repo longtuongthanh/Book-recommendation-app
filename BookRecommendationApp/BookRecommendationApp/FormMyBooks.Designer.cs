@@ -31,8 +31,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -72,16 +72,7 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(824, 630);
             this.flowLayoutPanel1.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 35);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Bộ sưu tập";
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // panel1
             // 
@@ -94,6 +85,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(176, 630);
             this.panel1.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 128);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(141, 35);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Bộ sưu tập";
             // 
             // FormMyBooks
             // 
