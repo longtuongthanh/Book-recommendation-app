@@ -36,6 +36,7 @@ namespace BookRecommendationApp
             button1.Click -= onButton1Click;
             button2.Click -= onButton2Click;
             picture.Image = BookRecommendationApp.Properties.Resources.book;
+            flowLayoutPanel1.Controls.Clear();
         }
         EventHandler onButton1Click;
         EventHandler onButton2Click;
@@ -174,7 +175,7 @@ namespace BookRecommendationApp
             // Merge conflict
 
             FormRP frmRP = new FormRP(currentBook);
-            frmRP.Show();
+            frmRP.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)

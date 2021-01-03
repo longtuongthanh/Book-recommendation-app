@@ -178,14 +178,21 @@ namespace BookRecommendationApp.Model
                 if (e != null)
                 {
                     string uid = Firebase.Ins.Token.User.LocalId;
+                    Error error = new Error
+                    {
+                        UID = uid,
+                        Timestamp = DateTime.Now,
+                        ErrorContent = e.ToString()
+                    };
                     if (uid != null || uid == "")
-                        Firebase.Ins.Client.Child("Error").Child(uid + DateTime.Now.ToString()).PutAsync(e.ToString());
+                        Firebase.Ins.Client.Child("Error").Child(uid + DateTime.Now.Ticks.ToString())
+                            .PutAsync(JsonConvert.SerializeObject(error));
                     else Console.WriteLine("ERROR: UID is null");
                 }
             }
             catch (Exception e2)
             {
-                Console.WriteLine("ERROR: cannot post error to database. Current error: " + 
+                Console.WriteLine("ERROR: cannot post error to database. Current error: " +
                     e2.ToString() + "\nTarget Error: " + e.ToString());
             }
             Util.StopLoadingForCursor();
@@ -198,8 +205,15 @@ namespace BookRecommendationApp.Model
                 if (e != null)
                 {
                     string uid = Firebase.Ins.Token.User.LocalId;
+                    Error error = new Error
+                    {
+                        UID = uid,
+                        Timestamp = DateTime.Now,
+                        ErrorContent = e
+                    };
                     if (uid != null || uid == "")
-                        Firebase.Ins.Client.Child("Error").Child(uid + DateTime.Now.ToString()).PutAsync(e);
+                        Firebase.Ins.Client.Child("Error").Child(uid + DateTime.Now.Ticks.ToString())
+                            .PutAsync(JsonConvert.SerializeObject(error));
                     else Console.WriteLine("ERROR: UID is null");
                 }
             }

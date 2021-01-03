@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace BookRecommendationApp.Model
 {
-    class Error
+    public class Error
     {
-        string UID;
-        string ErrorContent;
+        public string UID;
+        public string ErrorContent;
+        public DateTime Timestamp;
     }
 }

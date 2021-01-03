@@ -85,6 +85,9 @@ namespace BookRecommendationApp
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            // Error check
+            if (comboBox1.SelectedItem == null)
+                return;
             // If the tag is already in the tagList, return.
             if (tagList.Any(item => item == comboBox1.SelectedItem.ToString()))
                 return;

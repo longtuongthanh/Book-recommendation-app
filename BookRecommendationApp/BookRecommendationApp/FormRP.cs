@@ -35,6 +35,8 @@ namespace BookRecommendationApp
             Database.Edit(currentBook);
 
             MessageBox.Show("Đã gửi báo cáo!");
+
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
