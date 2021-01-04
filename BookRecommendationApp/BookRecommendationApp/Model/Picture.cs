@@ -29,6 +29,11 @@ namespace BookRecommendationApp.Model
             FilePath = newName + '.' + type;
         }
 
+        public string GetAppDataPath()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Nhom 20/BookRecApp";
+        }
+
         public Image GetImage()
         {
             if (image != null)
@@ -41,18 +46,18 @@ namespace BookRecommendationApp.Model
             // Make picture from hash
             if (Content != null)
             {
-                using (FileStream cout = File.OpenWrite(FilePath))
+                using (FileStream cout = File.OpenWrite(GetAppDataPath() + FilePath))
                 {
                     byte[] data = Util.Decrypt(Content);
                     cout.Write(data, 0, data.Length);
                 }
-                return image = Image.FromFile(FilePath);
+                return image = Image.FromFile(GetAppDataPath() + FilePath);
             }
             else // Get picture from file
             {
                 try
                 {
-                    return image = Image.FromFile(FilePath);
+                    return image = Image.FromFile(GetAppDataPath() + FilePath);
                 }
                 catch (Exception e) {
                     if (e is OutOfMemoryException)
@@ -75,7 +80,7 @@ namespace BookRecommendationApp.Model
             if (FilePath == null)
                 return;
             
-            using (FileStream cout = File.OpenWrite(FilePath))
+            using (FileStream cout = File.OpenWrite(GetAppDataPath() + FilePath))
             {
                 byte[] data = Util.Decrypt(Content);
                 cout.Write(data, 0, data.Length);
@@ -89,7 +94,7 @@ namespace BookRecommendationApp.Model
             if (FilePath == null)
                 return;
 
-            using (FileStream cin = File.OpenRead(FilePath))
+            using (FileStream cin = File.OpenRead(GetAppDataPath() + FilePath))
             {
                 byte[] data = new byte[cin.Length];
                 cin.Read(data, 0, data.Length);
